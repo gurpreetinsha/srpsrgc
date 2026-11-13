@@ -18,9 +18,9 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **Step 1** | Foundation Documentation & Artifacts | **IMPLEMENTATION COMPLETE** | Docs created, Artifacts written | `9b0cb72` |
 | **Phase 0** | Foundation: Scaffold, Tooling, CI, Docker Compose, Env | **IMPLEMENTATION COMPLETE** | prisma validate, tsc, lint, test, build | `9b0cb72` |
-| **Phase 1** | Schema + Initial Migration against clean Postgres | **IMPLEMENTATION COMPLETE** | prisma validate, prisma generate, migration SQL | `9b0cb72` |
+| **Phase 1** | Schema + Initial Migration against clean Postgres | **IMPLEMENTATION COMPLETE** | prisma validate, prisma generate, migration SQL | `4ae640f` |
 | **Phase 2** | Calculation Engine + Unit Test Suite (Pure Module) | **IMPLEMENTATION COMPLETE** | 21 Vitest unit tests passing | `9b0cb72` |
-| **Phase 3** | Auth, Sessions, RBAC, Rate Limiting, Audit, Admin CLI | NOT STARTED | Pending | Pending |
+| **Phase 3** | Auth, Sessions, RBAC, Rate Limiting, Audit, Admin CLI | **IMPLEMENTATION COMPLETE** | 34 unit tests pass, Argon2id verified, bootstrap CLI | Pending |
 | **Phase 4** | Institution Settings + Academic Structure + Onboarding | NOT STARTED | Pending | Pending |
 | **Phase 5** | People Management, Enrollments, Assignments, Imports | NOT STARTED | Pending | Pending |
 | **Phase 6** | Exams, Marks Entry, Submission, Review, Publication | NOT STARTED | Pending | Pending |
@@ -38,7 +38,11 @@
 | 2026-11-13 08:48 | `pnpm prisma validate` (Phase 1) | 0 | Full schema validated with all 34 models |
 | 2026-11-13 08:48 | `pnpm prisma generate` (Phase 1) | 0 | Prisma Client v6.4.1 generated successfully |
 | 2026-11-13 08:48 | `pnpm prisma migrate diff` (Phase 1) | 0 | 34KB migration SQL written to 20261113000000_init |
-| 2026-11-13 08:49 | `pnpm exec tsc --noEmit` (Phase 1) | 0 | Strict typecheck clean |
+| 2026-11-13 08:54 | `pnpm test` (Phase 3) | 0 | 34 unit tests passed (calculator + auth/rbac) |
+| 2026-11-13 08:53 | `pnpm exec tsc --noEmit` (Phase 3) | 0 | Strict type check clean |
+| 2026-11-13 08:53 | `pnpm lint` (Phase 3) | 0 | Zero ESLint warnings or errors |
+| 2026-11-13 08:55 | `pnpm build` (Phase 3) | 0 | Production build compiled cleanly |
+| 2026-11-13 08:54 | `pnpm bootstrap:admin --help` | 1 | CLI loads, validates inputs and exits safely |
 | 2026-11-13 08:50 | `pnpm build` (Phase 1) | 0 | Next.js production build succeeded |
 | 2026-11-13 08:42 | `pnpm exec tsc --noEmit` | 0 | Clean compilation with strict mode |
 | 2026-11-13 08:44 | `pnpm lint` | 0 | No ESLint warnings or errors |
