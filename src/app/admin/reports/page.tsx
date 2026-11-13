@@ -77,12 +77,12 @@ export default function ReportsAdminPage() {
   return (
     <div className="p-8 space-y-6">
       {/* Title */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
             Reports & Academic Analytics
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500">
             Official institutional performance summaries, grade distributions, and sanitized spreadsheet exports.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function ReportsAdminPage() {
             <select
               value={selectedExamId}
               onChange={(e) => setSelectedExamId(e.target.value)}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm focus:border-[#0f2042] focus:outline-none"
+              className="w-full sm:w-auto rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm focus:border-[#991b1b] focus:outline-none"
             >
               {exams.map((ex) => (
                 <option key={ex.id} value={ex.id}>
@@ -127,21 +127,21 @@ export default function ReportsAdminPage() {
       {/* Report view */}
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
         </div>
       ) : report ? (
         <div className="space-y-6">
           {/* Header & Export Actions */}
-          <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <span className="rounded bg-[#0f2042] px-2.5 py-0.5 text-xs font-bold text-white">
+              <span className="rounded bg-[#991b1b] px-2.5 py-0.5 text-xs font-bold text-white">
                 {report.programName}
               </span>
-              <h2 className="mt-1 text-xl font-bold text-slate-900">{report.examinationTitle}</h2>
+              <h2 className="mt-1 text-lg sm:text-xl font-bold text-slate-900">{report.examinationTitle}</h2>
               <p className="text-xs text-slate-500">Academic Year: {report.academicYear}</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <a
                 href={`/api/admin/reports/export?examinationId=${report.examinationId}&format=csv`}
                 className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
@@ -152,9 +152,9 @@ export default function ReportsAdminPage() {
 
               <a
                 href={`/api/admin/reports/export?examinationId=${report.examinationId}&format=xlsx`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2042] px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-[#1a3466]"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
               >
-                <FileSpreadsheet className="h-4 w-4 text-[#c69214]" />
+                <FileSpreadsheet className="h-4 w-4 text-white" />
                 <span>Export Excel (.xlsx)</span>
               </a>
             </div>
@@ -185,9 +185,9 @@ export default function ReportsAdminPage() {
             <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
                 <span>Average SGPA</span>
-                <Award className="h-4 w-4 text-[#c69214]" />
+                <Award className="h-4 w-4 text-[#991b1b]" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-[#0f2042]">
+              <div className="mt-2 text-2xl font-bold text-[#991b1b]">
                 {report.averageSgpa !== null ? report.averageSgpa : "N/A"}
               </div>
               <div className="mt-1 text-xs text-slate-400">Across passing candidates</div>
@@ -216,7 +216,7 @@ export default function ReportsAdminPage() {
                   key={grade}
                   className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center"
                 >
-                  <div className="text-xs font-bold text-[#0f2042]">{grade}</div>
+                  <div className="text-xs font-bold text-[#991b1b]">{grade}</div>
                   <div className="mt-1 text-lg font-bold text-slate-900">{count}</div>
                   <div className="text-[10px] text-slate-400">marks</div>
                 </div>

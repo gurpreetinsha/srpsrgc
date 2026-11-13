@@ -343,21 +343,21 @@ export default function ExaminationsAdminPage() {
   return (
     <div className="p-8 space-y-6">
       {/* Title */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
             Examinations & Result Publication
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500">
             Orchestrate examination sessions, lock student rosters, moderate faculty marks, and publish official results.
           </p>
         </div>
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#0f2042] px-4 py-2 text-xs font-semibold text-white shadow hover:bg-[#1a3466]"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#991b1b] px-4 py-2 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d] self-start sm:self-auto"
         >
-          <Plus className="h-4 w-4 text-[#c69214]" />
+          <Plus className="h-4 w-4 text-white" />
           <span>New Examination Session</span>
         </button>
       </div>
@@ -387,7 +387,7 @@ export default function ExaminationsAdminPage() {
           <div className="space-y-2 max-h-[700px] overflow-y-auto">
             {loading ? (
               <div className="flex h-32 items-center justify-center">
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#0f2042] border-t-transparent"></div>
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#991b1b] border-t-transparent"></div>
               </div>
             ) : exams.length === 0 ? (
               <div className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-xs text-slate-400">
@@ -404,12 +404,12 @@ export default function ExaminationsAdminPage() {
                     onClick={() => setSelectedExamId(exam.id)}
                     className={`cursor-pointer rounded-xl border p-4 transition ${
                       isSelected
-                        ? "border-[#0f2042] bg-white shadow-md ring-1 ring-[#0f2042]"
+                        ? "border-[#991b1b] bg-white shadow-md ring-1 ring-[#991b1b]"
                         : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
                     }`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className="rounded bg-[#0f2042]/10 px-2 py-0.5 text-[10px] font-bold text-[#0f2042]">
+                      <span className="rounded bg-red-50 px-2 py-0.5 text-[10px] font-bold text-[#991b1b]">
                         {exam.session}
                       </span>
                       <span
@@ -457,7 +457,7 @@ export default function ExaminationsAdminPage() {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded bg-[#0f2042] px-2.5 py-0.5 text-xs font-bold text-white">
+                    <span className="rounded bg-[#991b1b] px-2.5 py-0.5 text-xs font-bold text-white">
                       {selectedExamDetail.session}
                     </span>
                     <span className="text-xs font-semibold text-slate-500">
@@ -541,7 +541,7 @@ export default function ExaminationsAdminPage() {
                   disabled={submitting || selectedExamDetail.publication?.status === "PUBLISHED"}
                   className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50 disabled:opacity-50"
                 >
-                  <Users className="h-3.5 w-3.5 text-[#0f2042]" />
+                  <Users className="h-3.5 w-3.5 text-[#991b1b]" />
                   <span>Freeze / Sync Snapshot</span>
                 </button>
               </div>
@@ -555,7 +555,7 @@ export default function ExaminationsAdminPage() {
                   <button
                     onClick={() => setShowAddSubjectModal(true)}
                     disabled={selectedExamDetail.publication?.status === "PUBLISHED"}
-                    className="inline-flex items-center gap-1 rounded bg-[#0f2042] px-2.5 py-1 text-xs font-semibold text-white hover:bg-[#1a3466] disabled:opacity-50"
+                    className="inline-flex items-center gap-1 rounded bg-[#991b1b] px-2.5 py-1 text-xs font-semibold text-white hover:bg-[#7f1d1d] disabled:opacity-50"
                   >
                     <Plus className="h-3 w-3" />
                     <span>Add Subject</span>
@@ -576,7 +576,7 @@ export default function ExaminationsAdminPage() {
                         <div key={es.id} className="p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-xs text-[#0f2042]">
+                              <span className="font-bold text-xs text-[#991b1b]">
                                 {es.subject.code}
                               </span>
                               <span className="font-medium text-xs text-slate-800">
@@ -622,7 +622,7 @@ export default function ExaminationsAdminPage() {
       {/* MODAL: CREATE EXAM */}
       {showCreateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-slate-900">New Examination Session</h3>
               <button onClick={() => setShowCreateModal(false)} className="text-slate-400">
@@ -706,7 +706,7 @@ export default function ExaminationsAdminPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div>
                   <label className="text-xs font-bold text-slate-700">Start Date</label>
                   <input
@@ -714,7 +714,7 @@ export default function ExaminationsAdminPage() {
                     required
                     value={examForm.startDate}
                     onChange={(e) => setExamForm({ ...examForm, startDate: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -724,7 +724,7 @@ export default function ExaminationsAdminPage() {
                     required
                     value={examForm.endDate}
                     onChange={(e) => setExamForm({ ...examForm, endDate: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
                   />
                 </div>
               </div>
@@ -740,7 +740,7 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#0f2042] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#1a3466]"
+                  className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
                 >
                   {submitting ? "Creating..." : "Establish Examination"}
                 </button>
@@ -753,7 +753,7 @@ export default function ExaminationsAdminPage() {
       {/* MODAL: ADD SUBJECT */}
       {showAddSubjectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-slate-900">Add Examination Subject</h3>
               <button onClick={() => setShowAddSubjectModal(false)} className="text-slate-400">
@@ -830,7 +830,7 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#0f2042] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#1a3466]"
+                  className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
                 >
                   {submitting ? "Adding..." : "Add to Exam"}
                 </button>

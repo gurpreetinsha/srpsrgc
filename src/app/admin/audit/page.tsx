@@ -79,13 +79,13 @@ export default function AuditLogsAdminPage() {
   };
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="space-y-6">
       {/* Title */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
           Audit Trail & System History
         </h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-xs sm:text-sm text-slate-500">
           Immutable institutional audit logs tracking logins, marks submissions, corrections, publications, and administrative alterations.
         </p>
       </div>
@@ -93,36 +93,36 @@ export default function AuditLogsAdminPage() {
       {/* Filters Form */}
       <form
         onSubmit={handleFilterSubmit}
-        className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+        className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
       >
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-slate-400" />
           <span className="text-xs font-bold text-slate-700">Filters:</span>
         </div>
 
-        <div>
+        <div className="flex-1 sm:flex-none">
           <input
             type="text"
             placeholder="Filter Action (e.g. PUBLISH)"
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#0f2042] focus:outline-none"
+            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#991b1b] focus:outline-none"
           />
         </div>
 
-        <div>
+        <div className="flex-1 sm:flex-none">
           <input
             type="text"
             placeholder="Entity Type (e.g. Mark)"
             value={entityFilter}
             onChange={(e) => setEntityFilter(e.target.value)}
-            className="w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#0f2042] focus:outline-none"
+            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#991b1b] focus:outline-none"
           />
         </div>
 
         <button
           type="submit"
-          className="rounded-lg bg-[#0f2042] px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#1a3466]"
+          className="rounded-lg bg-[#991b1b] px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
         >
           Apply Filter
         </button>
@@ -136,7 +136,7 @@ export default function AuditLogsAdminPage() {
               setPage(1);
               fetchLogs(1);
             }}
-            className="text-xs font-semibold text-slate-500 hover:text-slate-800"
+            className="text-xs font-semibold text-slate-500 hover:text-slate-800 text-center py-1 sm:py-0"
           >
             Clear Filters
           </button>
@@ -154,7 +154,7 @@ export default function AuditLogsAdminPage() {
       {/* Logs Table */}
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
         </div>
       ) : logs.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm">
@@ -166,18 +166,19 @@ export default function AuditLogsAdminPage() {
         </div>
       ) : (
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-[#0f2042] text-white">
-              <tr>
-                <th className="px-4 py-3 font-semibold">Timestamp</th>
-                <th className="px-4 py-3 font-semibold">Action</th>
-                <th className="px-4 py-3 font-semibold">Entity</th>
-                <th className="px-4 py-3 font-semibold">Actor Identifier</th>
-                <th className="px-4 py-3 font-semibold">IP Address</th>
-                <th className="px-4 py-3 font-semibold text-center">Changes / Diff</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[700px] text-left text-xs">
+              <thead className="bg-[#991b1b] text-white">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Timestamp</th>
+                  <th className="px-4 py-3 font-semibold">Action</th>
+                  <th className="px-4 py-3 font-semibold">Entity</th>
+                  <th className="px-4 py-3 font-semibold">Actor Identifier</th>
+                  <th className="px-4 py-3 font-semibold">IP Address</th>
+                  <th className="px-4 py-3 font-semibold text-center">Changes / Diff</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
               {logs.map((log) => {
                 const isExpanded = expandedLogId === log.id;
                 const hasDetails = log.newValues || log.oldValues;
@@ -238,10 +239,11 @@ export default function AuditLogsAdminPage() {
               })}
             </tbody>
           </table>
+          </div>
 
           {/* Expanded Drawer for Details */}
           {expandedLogId && (
-            <div className="border-t border-slate-200 bg-slate-50 p-6">
+            <div className="border-t border-slate-200 bg-slate-50 p-4 sm:p-6">
               {(() => {
                 const log = logs.find((l) => l.id === expandedLogId);
                 if (!log) return null;
@@ -289,7 +291,7 @@ export default function AuditLogsAdminPage() {
           )}
 
           {/* Pagination */}
-          <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-slate-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
             <div>
               Showing page {page} of {totalPages} ({total} total audit records)
             </div>

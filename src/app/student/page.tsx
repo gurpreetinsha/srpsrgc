@@ -26,19 +26,19 @@ export default async function StudentDashboardPage() {
   return (
     <div className="space-y-6">
       {/* Welcome Banner */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-xl font-bold text-[#0f2042]">
+            <h1 className="text-xl sm:text-2xl font-bold text-[#991b1b]">
               Academic Results & Transcripts
             </h1>
-            <p className="text-sm text-slate-500">
+            <p className="text-xs sm:text-sm text-slate-500">
               Official published examination performance records for Roll No:{" "}
               <span className="font-semibold text-slate-800">{session.user.identifier}</span>
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-            <Calendar className="h-4 w-4 text-[#c69214]" />
+            <Calendar className="h-4 w-4 text-[#991b1b]" />
             <span>Academic Year 2025-2026</span>
           </div>
         </div>
@@ -66,13 +66,13 @@ export default async function StudentDashboardPage() {
               className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
             >
               {/* Exam Header */}
-              <div className="border-b border-slate-200 bg-slate-50/80 px-6 py-4">
+              <div className="border-b border-slate-200 bg-slate-50/80 px-4 sm:px-6 py-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <span className="inline-block rounded bg-[#0f2042] px-2.5 py-0.5 text-[11px] font-semibold text-white">
+                    <span className="inline-block rounded bg-[#991b1b] px-2.5 py-0.5 text-[11px] font-semibold text-white">
                       {item.program} — {item.semester}
                     </span>
-                    <h2 className="mt-1 text-lg font-bold text-slate-900">
+                    <h2 className="mt-1 text-base sm:text-lg font-bold text-slate-900">
                       {item.examinationTitle}
                     </h2>
                     <p className="text-xs text-slate-500">
@@ -86,9 +86,9 @@ export default async function StudentDashboardPage() {
                       href={`/api/student/result-card?examId=${item.examinationId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg bg-[#0f2042] px-4 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#1b3464]"
+                      className="inline-flex items-center gap-2 rounded-lg bg-[#991b1b] px-4 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#7f1d1d]"
                     >
-                      <Download className="h-4 w-4 text-[#c69214]" />
+                      <Download className="h-4 w-4 text-white" />
                       <span>Download Official PDF Card</span>
                     </a>
                   </div>
@@ -97,7 +97,7 @@ export default async function StudentDashboardPage() {
 
               {/* Withheld Notice if applicable */}
               {isWithheld && (
-                <div className="flex items-center gap-3 border-b border-amber-200 bg-amber-50 px-6 py-3 text-sm text-amber-900">
+                <div className="flex items-center gap-3 border-b border-amber-200 bg-amber-50 px-4 sm:px-6 py-3 text-sm text-amber-900">
                   <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600" />
                   <div>
                     <span className="font-semibold">Result Withheld: </span>
@@ -108,7 +108,7 @@ export default async function StudentDashboardPage() {
 
               {/* Subject Marks Table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
+                <table className="w-full min-w-[650px] text-left text-xs">
                   <thead className="border-b border-slate-200 bg-slate-100/60 font-semibold text-slate-700">
                     <tr>
                       <th className="px-6 py-3">Subject Code</th>
@@ -135,7 +135,7 @@ export default async function StudentDashboardPage() {
                         <td className="px-6 py-3.5 text-center font-semibold text-slate-900">
                           {sub.totalMarksObtained !== null ? sub.totalMarksObtained : "-"}
                         </td>
-                        <td className="px-6 py-3.5 text-center font-bold text-[#0f2042]">
+                        <td className="px-6 py-3.5 text-center font-bold text-[#991b1b]">
                           {sub.grade}
                         </td>
                         <td className="px-6 py-3.5 text-center">{sub.gradePoint.toFixed(1)}</td>
@@ -157,8 +157,8 @@ export default async function StudentDashboardPage() {
               </div>
 
               {/* Performance Metrics Footer */}
-              <div className="border-t border-slate-200 bg-slate-50/50 p-6">
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="border-t border-slate-200 bg-slate-50/50 p-4 sm:p-6">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
                   <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-xs">
                     <span className="text-[11px] font-medium text-slate-500">Credits Offered</span>
                     <div className="mt-0.5 text-lg font-bold text-slate-900">
@@ -175,7 +175,7 @@ export default async function StudentDashboardPage() {
 
                   <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-xs">
                     <span className="text-[11px] font-medium text-slate-500">Semester SGPA</span>
-                    <div className="mt-0.5 text-lg font-bold text-[#0f2042]">
+                    <div className="mt-0.5 text-lg font-bold text-[#991b1b]">
                       {res.sgpa !== null ? res.sgpa.toFixed(2) : "N/A"}
                     </div>
                   </div>

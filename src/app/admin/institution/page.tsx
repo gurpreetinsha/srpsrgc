@@ -96,19 +96,19 @@ export default function InstitutionSettingsPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent"></div>
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 max-w-4xl space-y-6">
+    <div className="max-w-4xl space-y-6">
       {/* Title */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
           Institution Settings & Configuration
         </h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-xs sm:text-sm text-slate-500">
           Configure Shri Ram Group of Colleges branding, current academic session, and student rank visibility policies.
         </p>
       </div>
@@ -145,7 +145,7 @@ export default function InstitutionSettingsPage() {
                 required
                 value={form.institutionName}
                 onChange={(e) => setForm({ ...form, institutionName: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function InstitutionSettingsPage() {
                 required
                 value={form.institutionCode}
                 onChange={(e) => setForm({ ...form, institutionCode: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function InstitutionSettingsPage() {
               type="text"
               value={form.tagline || ""}
               onChange={(e) => setForm({ ...form, tagline: e.target.value })}
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
             />
           </div>
 
@@ -177,7 +177,7 @@ export default function InstitutionSettingsPage() {
               rows={2}
               value={form.address || ""}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
             />
           </div>
 
@@ -188,7 +188,7 @@ export default function InstitutionSettingsPage() {
                 type="email"
                 value={form.contactEmail || ""}
                 onChange={(e) => setForm({ ...form, contactEmail: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
 
@@ -198,7 +198,7 @@ export default function InstitutionSettingsPage() {
                 type="text"
                 value={form.contactPhone || ""}
                 onChange={(e) => setForm({ ...form, contactPhone: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
 
@@ -208,7 +208,7 @@ export default function InstitutionSettingsPage() {
                 type="url"
                 value={form.websiteUrl || ""}
                 onChange={(e) => setForm({ ...form, websiteUrl: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function InstitutionSettingsPage() {
                 value={form.currentAcademicSession}
                 onChange={(e) => setForm({ ...form, currentAcademicSession: e.target.value })}
                 placeholder="2025-2026"
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
 
@@ -248,7 +248,7 @@ export default function InstitutionSettingsPage() {
                     defaultPassingPercentage: parseFloat(e.target.value) || 40,
                   })
                 }
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
               />
             </div>
           </div>
@@ -260,7 +260,7 @@ export default function InstitutionSettingsPage() {
                 type="checkbox"
                 checked={form.allowStudentRankView}
                 onChange={(e) => setForm({ ...form, allowStudentRankView: e.target.checked })}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0f2042] focus:ring-[#0f2042]"
+                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#991b1b] focus:ring-[#991b1b]"
               />
               <div>
                 <span className="text-xs font-bold text-slate-900">
@@ -278,9 +278,9 @@ export default function InstitutionSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#0f2042] px-5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#1b3464] disabled:opacity-50"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg bg-[#991b1b] px-5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#7f1d1d] disabled:opacity-50"
           >
-            <Save className="h-4 w-4 text-[#c69214]" />
+            <Save className="h-4 w-4 text-white" />
             <span>{saving ? "Saving Changes..." : "Save Settings"}</span>
           </button>
         </div>

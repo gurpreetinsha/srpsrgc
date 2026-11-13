@@ -51,10 +51,10 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Header Branding */}
         <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-xl bg-[#0f2042] shadow-md ring-2 ring-[#c69214]/40">
-            <GraduationCap className="h-8 w-8 text-[#c69214]" />
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-xl bg-[#991b1b] shadow-md ring-4 ring-red-100">
+            <GraduationCap className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+          <h1 className="text-2xl font-bold tracking-tight text-[#991b1b]">
             Shri Ram Group of Colleges
           </h1>
           <p className="mt-1 text-sm font-medium text-slate-500">
@@ -90,7 +90,7 @@ export default function LoginPage() {
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   placeholder="e.g. 230101, FAC001, admin@srgc.edu.in"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your account password"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042]"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#0f2042] px-4 py-2.5 text-sm font-semibold text-white shadow transition hover:bg-[#1a3363] disabled:opacity-50"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#991b1b] px-4 py-2.5 text-sm font-semibold text-white shadow transition hover:bg-[#7f1d1d] disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -123,7 +123,7 @@ export default function LoginPage() {
                 </>
               ) : (
                 <>
-                  <Lock className="h-4 w-4 text-[#c69214]" />
+                  <Lock className="h-4 w-4 text-white" />
                   <span>Secure Sign In</span>
                 </>
               )}

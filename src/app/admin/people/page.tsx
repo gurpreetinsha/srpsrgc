@@ -167,10 +167,10 @@ export default function PeopleManagementPage() {
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
             Students & Faculty Management
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500">
             Maintain institutional personnel directories, student profiles, and teaching staff accounts.
           </p>
         </div>
@@ -191,18 +191,18 @@ export default function PeopleManagementPage() {
       )}
 
       {/* Search & Actions Bar */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         {/* Tab switch */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none pb-1">
           <button
             onClick={() => {
               setActiveTab("students");
               setSearch("");
             }}
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition ${
+            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
               activeTab === "students"
-                ? "bg-[#0f2042] text-white shadow"
-                : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                ? "bg-[#991b1b] text-white shadow"
+                : "bg-white border border-slate-200 text-slate-700 hover:bg-red-50 hover:text-[#991b1b]"
             }`}
           >
             <GraduationCap className="h-4 w-4" />
@@ -214,10 +214,10 @@ export default function PeopleManagementPage() {
               setActiveTab("faculty");
               setSearch("");
             }}
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition ${
+            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
               activeTab === "faculty"
-                ? "bg-[#0f2042] text-white shadow"
-                : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                ? "bg-[#991b1b] text-white shadow"
+                : "bg-white border border-slate-200 text-slate-700 hover:bg-red-50 hover:text-[#991b1b]"
             }`}
           >
             <Users className="h-4 w-4" />
@@ -226,8 +226,8 @@ export default function PeopleManagementPage() {
         </div>
 
         {/* Search & New Button */}
-        <div className="flex items-center gap-2">
-          <form onSubmit={handleSearch} className="flex items-center">
+        <div className="flex flex-wrap items-center gap-2">
+          <form onSubmit={handleSearch} className="flex-1 sm:flex-none">
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-400" />
               <input
@@ -235,16 +235,16 @@ export default function PeopleManagementPage() {
                 placeholder={activeTab === "students" ? "Search Roll / Name..." : "Search Code / Name..."}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-56 rounded-lg border border-slate-300 py-1.5 pl-8 pr-3 text-xs text-slate-900 focus:border-[#0f2042] focus:outline-none"
+                className="w-full sm:w-56 rounded-lg border border-slate-300 py-1.5 pl-8 pr-3 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none"
               />
             </div>
           </form>
 
           <button
             onClick={() => setShowModal(activeTab === "students" ? "student" : "faculty")}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2042] px-3.5 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#1a3466]"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3.5 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
           >
-            <UserPlus className="h-3.5 w-3.5 text-[#c69214]" />
+            <UserPlus className="h-3.5 w-3.5 text-white" />
             <span>{activeTab === "students" ? "Add Student" : "Add Faculty"}</span>
           </button>
         </div>
@@ -253,51 +253,53 @@ export default function PeopleManagementPage() {
       {/* Directory Tables */}
       {loading ? (
         <div className="flex h-48 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
         </div>
       ) : activeTab === "students" ? (
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-[#0f2042] text-white">
-              <tr>
-                <th className="px-4 py-3 font-semibold">Roll Number</th>
-                <th className="px-4 py-3 font-semibold">Reg Number</th>
-                <th className="px-4 py-3 font-semibold">Student Name</th>
-                <th className="px-4 py-3 font-semibold">Program</th>
-                <th className="px-4 py-3 font-semibold">Batch</th>
-                <th className="px-4 py-3 font-semibold text-center">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {students.length === 0 ? (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[600px] text-left text-xs">
+              <thead className="bg-[#991b1b] text-white">
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-400">
-                    No students found. Use &quot;Add Student&quot; to register candidates.
-                  </td>
+                  <th className="px-4 py-3 font-semibold">Roll Number</th>
+                  <th className="px-4 py-3 font-semibold">Reg Number</th>
+                  <th className="px-4 py-3 font-semibold">Student Name</th>
+                  <th className="px-4 py-3 font-semibold">Program</th>
+                  <th className="px-4 py-3 font-semibold">Batch</th>
+                  <th className="px-4 py-3 font-semibold text-center">Status</th>
                 </tr>
-              ) : (
-                students.map((st) => (
-                  <tr key={st.id} className="hover:bg-slate-50">
-                    <td className="px-4 py-3 font-bold text-[#0f2042]">{st.rollNumber}</td>
-                    <td className="px-4 py-3 text-slate-600">{st.regNumber}</td>
-                    <td className="px-4 py-3 font-medium text-slate-900">
-                      {st.firstName} {st.lastName}
-                    </td>
-                    <td className="px-4 py-3 text-slate-700">{st.program?.name}</td>
-                    <td className="px-4 py-3 text-slate-600">{st.batch?.name}</td>
-                    <td className="px-4 py-3 text-center">
-                      <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
-                        ACTIVE
-                      </span>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {students.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="py-8 text-center text-slate-400">
+                      No students found. Use &quot;Add Student&quot; to register candidates.
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  students.map((st) => (
+                    <tr key={st.id} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 font-bold text-[#991b1b]">{st.rollNumber}</td>
+                      <td className="px-4 py-3 text-slate-600">{st.regNumber}</td>
+                      <td className="px-4 py-3 font-medium text-slate-900">
+                        {st.firstName} {st.lastName}
+                      </td>
+                      <td className="px-4 py-3 text-slate-700">{st.program?.name}</td>
+                      <td className="px-4 py-3 text-slate-600">{st.batch?.name}</td>
+                      <td className="px-4 py-3 text-center">
+                        <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                          ACTIVE
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-slate-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
             <div>
               Showing page {page} of {totalPages} ({totalStudents} total students)
             </div>
@@ -321,49 +323,51 @@ export default function PeopleManagementPage() {
         </div>
       ) : (
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-[#0f2042] text-white">
-              <tr>
-                <th className="px-4 py-3 font-semibold">Faculty Code</th>
-                <th className="px-4 py-3 font-semibold">Instructor Name</th>
-                <th className="px-4 py-3 font-semibold">Designation</th>
-                <th className="px-4 py-3 font-semibold">Department</th>
-                <th className="px-4 py-3 font-semibold">Email</th>
-                <th className="px-4 py-3 font-semibold text-center">Assignments</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {faculty.length === 0 ? (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[600px] text-left text-xs">
+              <thead className="bg-[#991b1b] text-white">
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-400">
-                    No faculty instructors found.
-                  </td>
+                  <th className="px-4 py-3 font-semibold">Faculty Code</th>
+                  <th className="px-4 py-3 font-semibold">Instructor Name</th>
+                  <th className="px-4 py-3 font-semibold">Designation</th>
+                  <th className="px-4 py-3 font-semibold">Department</th>
+                  <th className="px-4 py-3 font-semibold">Email</th>
+                  <th className="px-4 py-3 font-semibold text-center">Assignments</th>
                 </tr>
-              ) : (
-                faculty.map((f) => (
-                  <tr key={f.id} className="hover:bg-slate-50">
-                    <td className="px-4 py-3 font-bold text-[#0f2042]">{f.facultyCode}</td>
-                    <td className="px-4 py-3 font-medium text-slate-900">
-                      {f.firstName} {f.lastName}
-                    </td>
-                    <td className="px-4 py-3 text-slate-600">{f.designation}</td>
-                    <td className="px-4 py-3 text-slate-700">{f.department?.name}</td>
-                    <td className="px-4 py-3 text-slate-600">{f.contactEmail || "-"}</td>
-                    <td className="px-4 py-3 text-center font-bold text-slate-800">
-                      {f._count?.assignments || 0}
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {faculty.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="py-8 text-center text-slate-400">
+                      No faculty instructors found.
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  faculty.map((f) => (
+                    <tr key={f.id} className="hover:bg-slate-50">
+                      <td className="px-4 py-3 font-bold text-[#991b1b]">{f.facultyCode}</td>
+                      <td className="px-4 py-3 font-medium text-slate-900">
+                        {f.firstName} {f.lastName}
+                      </td>
+                      <td className="px-4 py-3 text-slate-600">{f.designation}</td>
+                      <td className="px-4 py-3 text-slate-700">{f.department?.name}</td>
+                      <td className="px-4 py-3 text-slate-600">{f.contactEmail || "-"}</td>
+                      <td className="px-4 py-3 text-center font-bold text-slate-800">
+                        {f._count?.assignments || 0}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
       {/* MODALS */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-slate-900">
                 {showModal === "student" ? "Register New Student" : "Register Faculty Instructor"}
@@ -485,7 +489,7 @@ export default function PeopleManagementPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2042] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#1a3466]"
+                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
                   >
                     {submitting ? "Saving..." : "Create Student Account"}
                   </button>
@@ -586,7 +590,7 @@ export default function PeopleManagementPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2042] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#1a3466]"
+                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
                   >
                     {submitting ? "Saving..." : "Create Faculty Account"}
                   </button>

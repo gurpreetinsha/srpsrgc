@@ -43,14 +43,14 @@ export default async function AdminDashboardPage() {
   ]);
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Welcome Banner */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#0f2042]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
             Administration Overview
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500">
             Shri Ram Group of Colleges &bull; Master result orchestration, publication, and institutional data.
           </p>
         </div>
@@ -121,35 +121,35 @@ export default async function AdminDashboardPage() {
 
       {/* Guided Onboarding Wizard Card */}
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-        <div className="border-b border-slate-200 bg-gradient-to-r from-[#0f2042] to-[#1c3a6b] p-6 text-white">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-b border-red-800 bg-gradient-to-r from-[#991b1b] to-[#7f1d1d] p-5 sm:p-6 text-white">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-[#c69214]" />
-                <h2 className="text-lg font-bold">Institutional Setup & Onboarding Wizard</h2>
+                <Sparkles className="h-5 w-5 text-white" />
+                <h2 className="text-base sm:text-lg font-bold">Institutional Setup & Onboarding Wizard</h2>
               </div>
-              <p className="mt-1 text-xs text-slate-300">
+              <p className="mt-1 text-xs text-red-100">
                 Complete all foundational milestones to ensure strict academic compliance and error-free result publication.
               </p>
             </div>
-            <div className="text-right">
-              <span className="text-2xl font-extrabold text-[#dec06b]">
+            <div className="sm:text-right">
+              <span className="text-2xl font-extrabold text-white">
                 {onboarding.completionPercentage}%
               </span>
-              <span className="text-xs text-slate-300 block">Complete</span>
+              <span className="text-xs text-red-100 block">Complete</span>
             </div>
           </div>
 
           {/* Progress bar */}
-          <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-red-950/60">
             <div
-              className="h-full bg-gradient-to-r from-[#dec06b] to-[#c69214] transition-all duration-500"
+              className="h-full bg-white transition-all duration-500 shadow"
               style={{ width: `${onboarding.completionPercentage}%` }}
             ></div>
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {onboarding.steps.map((step) => {
               return (
@@ -192,7 +192,7 @@ export default async function AdminDashboardPage() {
             <h3 className="font-bold text-slate-900">Recent Examinations</h3>
             <Link
               href="/admin/exams"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#0f2042] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#991b1b] hover:underline"
             >
               <span>Manage Exams</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -236,7 +236,7 @@ export default async function AdminDashboardPage() {
             <h3 className="font-bold text-slate-900">Audit Trail Activity</h3>
             <Link
               href="/admin/audit"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#0f2042] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#991b1b] hover:underline"
             >
               <span>Full Audit Logs</span>
               <ArrowRight className="h-3.5 w-3.5" />

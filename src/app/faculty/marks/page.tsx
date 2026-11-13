@@ -278,7 +278,7 @@ function MarksEntryContent() {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent mx-auto mb-2"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent mx-auto mb-2"></div>
           <p className="text-xs font-semibold text-slate-500">Loading Student Marks Roster...</p>
         </div>
       </div>
@@ -313,10 +313,10 @@ function MarksEntryContent() {
   return (
     <div className="space-y-6">
       {/* Top Navigation */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/faculty"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 transition hover:text-[#0f2042]"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 transition hover:text-[#991b1b]"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Assignments</span>
@@ -337,25 +337,25 @@ function MarksEntryContent() {
             disabled={isApproved}
             className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
           >
-            <Upload className="h-3.5 w-3.5 text-[#c69214]" />
+            <Upload className="h-3.5 w-3.5 text-[#991b1b]" />
             <span>Import CSV / Excel</span>
           </button>
         </div>
       </div>
 
       {/* Header Info Banner */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <span className="rounded bg-[#0f2042] px-2.5 py-0.5 text-xs font-bold text-white">
+              <span className="rounded bg-[#991b1b] px-2.5 py-0.5 text-xs font-bold text-white">
                 {examSubject?.subjectCode}
               </span>
               <span className="text-xs font-semibold text-slate-500">
                 {examSubject?.examinationTitle}
               </span>
             </div>
-            <h1 className="mt-1 text-2xl font-bold text-slate-900">
+            <h1 className="mt-1 text-xl sm:text-2xl font-bold text-slate-900">
               {examSubject?.subjectName}
             </h1>
             <p className="mt-1 text-xs text-slate-500">
@@ -363,18 +363,18 @@ function MarksEntryContent() {
             </p>
           </div>
 
-          <div className="flex gap-4 border-t border-slate-100 pt-3 md:border-t-0 md:pt-0">
-            <div className="rounded-lg bg-slate-50 px-3 py-2 text-center border border-slate-200">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-slate-100 pt-3 lg:border-t-0 lg:pt-0">
+            <div className="rounded-lg bg-slate-50 px-2.5 sm:px-3 py-2 text-center border border-slate-200">
               <div className="text-[10px] uppercase font-bold text-slate-500">Max Internal</div>
-              <div className="text-lg font-bold text-slate-900">{examSubject?.maxInternalMarks}</div>
+              <div className="text-base sm:text-lg font-bold text-slate-900">{examSubject?.maxInternalMarks}</div>
             </div>
-            <div className="rounded-lg bg-slate-50 px-3 py-2 text-center border border-slate-200">
+            <div className="rounded-lg bg-slate-50 px-2.5 sm:px-3 py-2 text-center border border-slate-200">
               <div className="text-[10px] uppercase font-bold text-slate-500">Max External</div>
-              <div className="text-lg font-bold text-slate-900">{examSubject?.maxExternalMarks}</div>
+              <div className="text-base sm:text-lg font-bold text-slate-900">{examSubject?.maxExternalMarks}</div>
             </div>
-            <div className="rounded-lg bg-slate-50 px-3 py-2 text-center border border-slate-200">
+            <div className="rounded-lg bg-slate-50 px-2.5 sm:px-3 py-2 text-center border border-slate-200">
               <div className="text-[10px] uppercase font-bold text-slate-500">Min Pass</div>
-              <div className="text-lg font-bold text-[#c69214]">{examSubject?.passingMarks}</div>
+              <div className="text-base sm:text-lg font-bold text-[#991b1b]">{examSubject?.passingMarks}</div>
             </div>
           </div>
         </div>
@@ -426,8 +426,8 @@ function MarksEntryContent() {
       {/* Student Roster Marks Grid */}
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-[#0f2042] text-white">
+          <table className="w-full min-w-[700px] text-left text-xs">
+            <thead className="bg-[#991b1b] text-white">
               <tr>
                 <th className="px-4 py-3 font-semibold">S.No</th>
                 <th className="px-4 py-3 font-semibold">Roll Number</th>
@@ -472,7 +472,7 @@ function MarksEntryContent() {
                           handleMarkChange(row.enrollmentId, "internalMarks", e.target.value)
                         }
                         placeholder="0.0"
-                        className="w-20 rounded border border-slate-300 px-2 py-1 text-center font-semibold text-slate-800 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042] disabled:bg-slate-100 disabled:text-slate-400"
+                        className="w-20 rounded border border-slate-300 px-2 py-1 text-center font-semibold text-slate-800 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b] disabled:bg-slate-100 disabled:text-slate-400"
                       />
                     </td>
 
@@ -489,7 +489,7 @@ function MarksEntryContent() {
                           handleMarkChange(row.enrollmentId, "externalMarks", e.target.value)
                         }
                         placeholder="0.0"
-                        className="w-20 rounded border border-slate-300 px-2 py-1 text-center font-semibold text-slate-800 focus:border-[#0f2042] focus:outline-none focus:ring-1 focus:ring-[#0f2042] disabled:bg-slate-100 disabled:text-slate-400"
+                        className="w-20 rounded border border-slate-300 px-2 py-1 text-center font-semibold text-slate-800 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b] disabled:bg-slate-100 disabled:text-slate-400"
                       />
                     </td>
 
@@ -574,9 +574,9 @@ function MarksEntryContent() {
               type="button"
               onClick={() => saveMarks(false)}
               disabled={isApproved}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0f2042] px-5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#1b3464] disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#991b1b] px-5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#7f1d1d] disabled:opacity-50"
             >
-              <Send className="h-4 w-4 text-[#c69214]" />
+              <Send className="h-4 w-4 text-white" />
               <span>Submit for Administrative Review</span>
             </button>
           </div>
@@ -586,15 +586,15 @@ function MarksEntryContent() {
       {/* CSV / Excel Import Modal */}
       {showImportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-lg rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+          <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
             <h3 className="text-lg font-bold text-slate-900">
               Import Marks from CSV or Excel (.xlsx)
             </h3>
             <p className="mt-1 text-xs text-slate-500">
               Upload a spreadsheet containing student roll numbers and marks. Columns recognized:{" "}
-              <code className="text-[#0f2042]">Roll Number</code>,{" "}
-              <code className="text-[#0f2042]">Internal Marks</code>,{" "}
-              <code className="text-[#0f2042]">External Marks</code>.
+              <code className="text-[#991b1b]">Roll Number</code>,{" "}
+              <code className="text-[#991b1b]">Internal Marks</code>,{" "}
+              <code className="text-[#991b1b]">External Marks</code>.
             </p>
 
             <form onSubmit={handleImportSubmit} className="mt-4 space-y-4">
@@ -604,7 +604,7 @@ function MarksEntryContent() {
                   type="file"
                   accept=".csv, .xlsx, .xls"
                   onChange={(e) => setImportFile(e.target.files?.[0] || null)}
-                  className="text-xs text-slate-600 file:mr-3 file:rounded-md file:border-0 file:bg-[#0f2042] file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-[#1a3466]"
+                  className="text-xs text-slate-600 file:mr-3 file:rounded-md file:border-0 file:bg-[#991b1b] file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-[#7f1d1d]"
                 />
               </div>
 
@@ -630,9 +630,9 @@ function MarksEntryContent() {
                 <button
                   type="submit"
                   disabled={!importFile || importing}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2042] px-4 py-2 text-xs font-semibold text-white hover:bg-[#1a3466] disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-4 py-2 text-xs font-semibold text-white hover:bg-[#7f1d1d] disabled:opacity-50"
                 >
-                  <Upload className="h-3.5 w-3.5 text-[#c69214]" />
+                  <Upload className="h-3.5 w-3.5 text-white" />
                   <span>{importing ? "Processing..." : "Upload & Validate"}</span>
                 </button>
               </div>
@@ -649,7 +649,7 @@ export default function MarksEntryPage() {
     <Suspense
       fallback={
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0f2042] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
         </div>
       }
     >

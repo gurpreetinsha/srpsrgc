@@ -34,11 +34,11 @@ export default async function FacultyDashboardPage() {
   return (
     <div className="space-y-6">
       {/* Overview Banner */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-xl font-bold text-[#0f2042]">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+        <h1 className="text-xl font-bold text-[#991b1b]">
           Assigned Course Sections
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-xs sm:text-sm text-slate-500">
           Official instructor assignments for marks entry, moderation, and grade submissions.
         </p>
       </div>
@@ -58,14 +58,14 @@ export default async function FacultyDashboardPage() {
           {assignments.map((asgn) => (
             <div
               key={asgn.id}
-              className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-[#0f2042]/50 hover:shadow"
+              className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-[#991b1b]/50 hover:shadow"
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded bg-[#0f2042]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#0f2042]">
+                  <span className="rounded bg-red-50 px-2.5 py-0.5 text-[11px] font-bold text-[#991b1b]">
                     {asgn.subject.code}
                   </span>
-                  <span className="text-[11px] font-semibold text-[#c69214]">
+                  <span className="text-[11px] font-semibold text-[#991b1b]">
                     {asgn.role} Instructor
                   </span>
                 </div>
@@ -93,10 +93,10 @@ export default async function FacultyDashboardPage() {
               <div className="mt-5 border-t border-slate-100 pt-4">
                 <Link
                   href={`/faculty/marks?subjectId=${asgn.subjectId}&sectionId=${asgn.sectionId}&semesterId=${asgn.semesterId}`}
-                  className="flex items-center justify-between rounded-lg bg-[#0f2042] px-3.5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#1a3466]"
+                  className="flex items-center justify-between rounded-lg bg-[#991b1b] px-3.5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#7f1d1d]"
                 >
                   <span>Enter / Import Marks</span>
-                  <ArrowRight className="h-4 w-4 text-[#c69214]" />
+                  <ArrowRight className="h-4 w-4 text-white" />
                 </Link>
               </div>
             </div>

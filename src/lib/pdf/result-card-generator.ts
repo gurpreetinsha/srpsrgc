@@ -28,11 +28,11 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
   const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-  const navy = rgb(0.06, 0.13, 0.26); // #0f2042 SRGC Navy
-  const gold = rgb(0.78, 0.57, 0.08); // #c69214 SRGC Gold
+  const crimsonRed = rgb(0.60, 0.11, 0.11); // #991b1b SRGC Crimson Red
+  const darkCrimson = rgb(0.50, 0.11, 0.11); // #7f1d1d SRGC Dark Red
   const slateText = rgb(0.2, 0.25, 0.33);
   const borderGrey = rgb(0.85, 0.88, 0.92);
-  const lightBg = rgb(0.96, 0.97, 0.99);
+  const lightBg = rgb(0.98, 0.96, 0.96); // Soft clean background
 
   let y = 800;
 
@@ -43,7 +43,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
     width: 515,
     height: 60,
     color: lightBg,
-    borderColor: navy,
+    borderColor: crimsonRed,
     borderWidth: 1.5,
   });
 
@@ -52,7 +52,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
     y: y - 20,
     size: 15,
     font: timesRomanBold,
-    color: navy,
+    color: crimsonRed,
   });
 
   if (data.tagline) {
@@ -61,7 +61,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
       y: y - 34,
       size: 9,
       font: helvetica,
-      color: gold,
+      color: darkCrimson,
     });
   }
 
@@ -83,7 +83,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
     y: y,
     size: 12,
     font: timesRomanBold,
-    color: navy,
+    color: crimsonRed,
   });
 
   y -= 16;
@@ -110,8 +110,8 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
 
   const res = data.studentResult;
   // Row 1
-  page.drawText(`Student Name: ${res.studentName}`, { x: 50, y: y - 18, size: 9, font: helveticaBold, color: navy });
-  page.drawText(`Roll Number: ${res.rollNumber}`, { x: 340, y: y - 18, size: 9, font: helveticaBold, color: navy });
+  page.drawText(`Student Name: ${res.studentName}`, { x: 50, y: y - 18, size: 9, font: helveticaBold, color: crimsonRed });
+  page.drawText(`Roll Number: ${res.rollNumber}`, { x: 340, y: y - 18, size: 9, font: helveticaBold, color: crimsonRed });
 
   // Row 2
   page.drawText(`Program: ${data.programName}`, { x: 50, y: y - 33, size: 9, font: helvetica, color: slateText });
@@ -129,7 +129,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
     y: y - 18,
     width: 515,
     height: 20,
-    color: navy,
+    color: crimsonRed,
   });
 
   page.drawText("CODE", { x: 45, y: y - 13, size: 8, font: helveticaBold, color: rgb(1, 1, 1) });
@@ -166,7 +166,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
 
     const obtText = sub.totalMarksObtained !== null ? sub.totalMarksObtained.toString() : "-";
     page.drawText(obtText, { x: 390, y: y - 12, size: 8, font: helvetica, color: slateText });
-    page.drawText(sub.grade, { x: 445, y: y - 12, size: 8, font: helveticaBold, color: navy });
+    page.drawText(sub.grade, { x: 445, y: y - 12, size: 8, font: helveticaBold, color: crimsonRed });
 
     const statusColor = sub.status === "PASS" ? rgb(0.1, 0.5, 0.2) : rgb(0.7, 0.1, 0.1);
     page.drawText(sub.status, { x: 495, y: y - 12, size: 8, font: helveticaBold, color: statusColor });
@@ -182,7 +182,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
     y: y - 45,
     width: 515,
     height: 50,
-    borderColor: navy,
+    borderColor: crimsonRed,
     borderWidth: 1,
     color: lightBg,
   });
@@ -191,7 +191,7 @@ export async function generateResultCardPdf(data: PdfResultCardData): Promise<Ui
   page.drawText(`Credits Earned: ${res.totalCreditsEarned}`, { x: 200, y: y - 18, size: 9, font: helvetica, color: slateText });
 
   const sgpaText = res.sgpa !== null ? res.sgpa.toFixed(2) : "N/A";
-  page.drawText(`SGPA: ${sgpaText}`, { x: 350, y: y - 18, size: 10, font: helveticaBold, color: navy });
+  page.drawText(`SGPA: ${sgpaText}`, { x: 350, y: y - 18, size: 10, font: helveticaBold, color: crimsonRed });
 
   page.drawText(`Percentage: ${res.overallPercentage.toFixed(2)}%`, { x: 55, y: y - 35, size: 9, font: helvetica, color: slateText });
   const finalStatusColor = res.status === "PASS" ? rgb(0.1, 0.5, 0.2) : rgb(0.7, 0.1, 0.1);
