@@ -82,8 +82,8 @@ export default function AuditLogsAdminPage() {
     <div className="space-y-6">
       {/* Title */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
-          Audit Trail & System History
+        <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
+          Audit Trail and System History
         </h1>
         <p className="text-xs sm:text-sm text-slate-500">
           Immutable institutional audit logs tracking logins, marks submissions, corrections, publications, and administrative alterations.
@@ -93,11 +93,11 @@ export default function AuditLogsAdminPage() {
       {/* Filters Form */}
       <form
         onSubmit={handleFilterSubmit}
-        className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+        className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-2xs"
       >
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-slate-400" />
-          <span className="text-xs font-bold text-slate-700">Filters:</span>
+          <span className="text-xs font-medium text-slate-700">Filters:</span>
         </div>
 
         <div className="flex-1 sm:flex-none">
@@ -106,7 +106,7 @@ export default function AuditLogsAdminPage() {
             placeholder="Filter Action (e.g. PUBLISH)"
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#991b1b] focus:outline-none"
+            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
           />
         </div>
 
@@ -116,13 +116,13 @@ export default function AuditLogsAdminPage() {
             placeholder="Entity Type (e.g. Mark)"
             value={entityFilter}
             onChange={(e) => setEntityFilter(e.target.value)}
-            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-[#991b1b] focus:outline-none"
+            className="w-full sm:w-48 rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-800 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
           />
         </div>
 
         <button
           type="submit"
-          className="rounded-lg bg-[#991b1b] px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+          className="rounded-lg bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
         >
           Apply Filter
         </button>
@@ -154,28 +154,28 @@ export default function AuditLogsAdminPage() {
       {/* Logs Table */}
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
         </div>
       ) : logs.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm">
-          <History className="mb-3 h-12 w-12 text-slate-300" />
-          <h3 className="text-base font-semibold text-slate-800">No Audit Events Recorded</h3>
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-2xs">
+          <History className="mb-3 h-10 w-10 text-slate-300" />
+          <h3 className="text-sm font-semibold text-slate-800">No audit events recorded</h3>
           <p className="mt-1 max-w-sm text-xs text-slate-500">
             System actions matching the specified filter criteria have not yet occurred.
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[700px] text-left text-xs">
-              <thead className="bg-[#991b1b] text-white">
+              <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                 <tr>
-                  <th className="px-4 py-3 font-semibold">Timestamp</th>
-                  <th className="px-4 py-3 font-semibold">Action</th>
-                  <th className="px-4 py-3 font-semibold">Entity</th>
-                  <th className="px-4 py-3 font-semibold">Actor Identifier</th>
-                  <th className="px-4 py-3 font-semibold">IP Address</th>
-                  <th className="px-4 py-3 font-semibold text-center">Changes / Diff</th>
+                  <th className="px-4 py-3 font-medium">Timestamp</th>
+                  <th className="px-4 py-3 font-medium">Action</th>
+                  <th className="px-4 py-3 font-medium">Entity</th>
+                  <th className="px-4 py-3 font-medium">Actor Identifier</th>
+                  <th className="px-4 py-3 font-medium">IP Address</th>
+                  <th className="px-4 py-3 font-medium text-center">Changes / Diff</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">

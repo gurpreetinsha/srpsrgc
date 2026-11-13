@@ -47,32 +47,32 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 py-8">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 py-12 text-slate-900">
       <div className="w-full max-w-md">
         {/* Header Branding */}
         <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-xl bg-[#991b1b] shadow-md ring-4 ring-red-100">
-            <GraduationCap className="h-8 w-8 text-white" />
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0f2342] text-amber-400 shadow-xs border border-slate-700">
+            <GraduationCap className="h-6 w-6" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#991b1b]">
+          <h1 className="text-xl font-semibold tracking-tight text-slate-950">
             Shri Ram Group of Colleges
           </h1>
-          <p className="mt-1 text-sm font-medium text-slate-500">
-            Official Examination & Result Management System
+          <p className="mt-1 text-xs text-slate-500">
+            Examination and Result Management System
           </p>
         </div>
 
         {/* Card */}
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs">
           <div className="mb-5 border-b border-slate-100 pb-4">
-            <h2 className="text-base font-semibold text-slate-900">Sign In to Your Account</h2>
-            <p className="text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-slate-900">Sign in to your account</h2>
+            <p className="text-xs text-slate-500 mt-0.5">
               Enter your institutional Roll Number, Faculty ID, or Admin Email.
             </p>
           </div>
 
           {error && (
-            <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+            <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-800">
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
               <span>{error}</span>
             </div>
@@ -80,8 +80,8 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                Institutional Identifier
+              <label className="block text-xs font-medium text-slate-700">
+                Institutional identifier
               </label>
               <div className="relative mt-1">
                 <input
@@ -90,13 +90,13 @@ export default function LoginPage() {
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   placeholder="e.g. 230101, FAC001, admin@srgc.edu.in"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600">
+              <label className="block text-xs font-medium text-slate-700">
                 Password
               </label>
               <div className="relative mt-1">
@@ -106,7 +106,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your account password"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                 />
               </div>
             </div>
@@ -114,17 +114,17 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#991b1b] px-4 py-2.5 text-sm font-semibold text-white shadow transition hover:bg-[#7f1d1d] disabled:opacity-50"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#0f2342] px-4 py-2.5 text-xs font-medium text-white shadow-xs transition hover:bg-[#0b1727] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f2342]"
             >
               {loading ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin text-white" />
-                  <span>Verifying Credentials...</span>
+                  <span>Verifying credentials...</span>
                 </>
               ) : (
                 <>
-                  <Lock className="h-4 w-4 text-white" />
-                  <span>Secure Sign In</span>
+                  <Lock className="h-4 w-4 text-amber-400" />
+                  <span>Sign in securely</span>
                 </>
               )}
             </button>
@@ -133,19 +133,19 @@ export default function LoginPage() {
           {/* Role access guidance */}
           <div className="mt-6 border-t border-slate-100 pt-4">
             <div className="grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
-              <div className="rounded border border-slate-100 bg-slate-50 p-2">
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-2.5">
                 <UserCheck className="mx-auto mb-1 h-3.5 w-3.5 text-slate-600" />
-                <span className="font-medium text-slate-700">Students</span>
-                <p className="text-[10px] text-slate-400">Roll No.</p>
+                <span className="font-medium text-slate-800 block text-[11px]">Students</span>
+                <p className="text-[10px] text-slate-400">Roll Number</p>
               </div>
-              <div className="rounded border border-slate-100 bg-slate-50 p-2">
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-2.5">
                 <GraduationCap className="mx-auto mb-1 h-3.5 w-3.5 text-slate-600" />
-                <span className="font-medium text-slate-700">Faculty</span>
+                <span className="font-medium text-slate-800 block text-[11px]">Faculty</span>
                 <p className="text-[10px] text-slate-400">Faculty ID</p>
               </div>
-              <div className="rounded border border-slate-100 bg-slate-50 p-2">
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-2.5">
                 <ShieldCheck className="mx-auto mb-1 h-3.5 w-3.5 text-slate-600" />
-                <span className="font-medium text-slate-700">Admins</span>
+                <span className="font-medium text-slate-800 block text-[11px]">Admins</span>
                 <p className="text-[10px] text-slate-400">Admin Email</p>
               </div>
             </div>
@@ -153,8 +153,8 @@ export default function LoginPage() {
         </div>
 
         {/* Security Notice */}
-        <p className="mt-4 text-center text-xs text-slate-400">
-          Encrypted with Argon2id & SHA-256 session tokens.
+        <p className="mt-4 text-center text-[11px] text-slate-400 leading-normal">
+          Secured with Argon2id and SHA-256 session token hashing.
           <br />
           Unauthorized access attempts are audited and rate-limited.
         </p>
@@ -162,4 +162,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

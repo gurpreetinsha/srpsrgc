@@ -86,11 +86,11 @@ export default function AcademicStructurePage() {
   };
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
             Academic Structure Management
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
@@ -119,8 +119,8 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("departments")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "departments"
-              ? "bg-[#991b1b] text-white shadow"
-              : "text-slate-600 hover:bg-red-50 hover:text-[#991b1b]"
+              ? "bg-[#0f2342] text-white shadow-2xs"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
           <Building className="h-4 w-4" />
@@ -131,8 +131,8 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("programs")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "programs"
-              ? "bg-[#991b1b] text-white shadow"
-              : "text-slate-600 hover:bg-red-50 hover:text-[#991b1b]"
+              ? "bg-[#0f2342] text-white shadow-2xs"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
           <GraduationCap className="h-4 w-4" />
@@ -143,8 +143,8 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("years")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "years"
-              ? "bg-[#991b1b] text-white shadow"
-              : "text-slate-600 hover:bg-red-50 hover:text-[#991b1b]"
+              ? "bg-[#0f2342] text-white shadow-2xs"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
           <Calendar className="h-4 w-4" />
@@ -155,8 +155,8 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("batches")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "batches"
-              ? "bg-[#991b1b] text-white shadow"
-              : "text-slate-600 hover:bg-red-50 hover:text-[#991b1b]"
+              ? "bg-[#0f2342] text-white shadow-2xs"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
           <Layers className="h-4 w-4" />
@@ -167,8 +167,8 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("subjects")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "subjects"
-              ? "bg-[#991b1b] text-white shadow"
-              : "text-slate-600 hover:bg-red-50 hover:text-[#991b1b]"
+              ? "bg-[#0f2342] text-white shadow-2xs"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
           <BookOpen className="h-4 w-4" />
@@ -179,7 +179,7 @@ export default function AcademicStructurePage() {
       {/* Tab Panels */}
       {loading ? (
         <div className="flex h-48 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
         </div>
       ) : (
         <div>
@@ -190,7 +190,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Academic Departments</h3>
                 <button
                   onClick={() => setShowModal("department")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Department</span>
@@ -198,7 +198,7 @@ export default function AcademicStructurePage() {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px] text-left text-xs">
-                  <thead className="bg-[#991b1b] text-white">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                     <tr>
                       <th className="px-4 py-3 font-semibold">Code</th>
                       <th className="px-4 py-3 font-semibold">Department Name</th>
@@ -217,7 +217,7 @@ export default function AcademicStructurePage() {
                     ) : (
                       departments.map((dept) => (
                         <tr key={dept.id} className="hover:bg-slate-50">
-                          <td className="px-4 py-3 font-bold text-[#991b1b]">{dept.code}</td>
+                          <td className="px-4 py-3 font-bold text-slate-900 font-semibold tabular-nums">{dept.code}</td>
                           <td className="px-4 py-3 font-medium text-slate-800">{dept.name}</td>
                           <td className="px-4 py-3 text-center">{dept._count?.programs || 0}</td>
                           <td className="px-4 py-3 text-center">{dept._count?.subjects || 0}</td>
@@ -238,7 +238,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Degree Programs & Courses</h3>
                 <button
                   onClick={() => setShowModal("program")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Program</span>
@@ -246,7 +246,7 @@ export default function AcademicStructurePage() {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[550px] text-left text-xs">
-                  <thead className="bg-[#991b1b] text-white">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                     <tr>
                       <th className="px-4 py-3 font-semibold">Code</th>
                       <th className="px-4 py-3 font-semibold">Program Name</th>
@@ -266,7 +266,7 @@ export default function AcademicStructurePage() {
                     ) : (
                       programs.map((prog) => (
                         <tr key={prog.id} className="hover:bg-slate-50">
-                          <td className="px-4 py-3 font-bold text-[#991b1b]">{prog.code}</td>
+                          <td className="px-4 py-3 font-bold text-slate-900 font-semibold tabular-nums">{prog.code}</td>
                           <td className="px-4 py-3 font-medium text-slate-800">{prog.name}</td>
                           <td className="px-4 py-3 text-slate-600">{prog.department?.name}</td>
                           <td className="px-4 py-3 text-center">{prog.totalSemesters}</td>
@@ -288,7 +288,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Academic Calendar Years</h3>
                 <button
                   onClick={() => setShowModal("academicYear")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Academic Year</span>
@@ -296,7 +296,7 @@ export default function AcademicStructurePage() {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px] text-left text-xs">
-                  <thead className="bg-[#991b1b] text-white">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                     <tr>
                       <th className="px-4 py-3 font-semibold">Academic Year</th>
                       <th className="px-4 py-3 font-semibold">Start Date</th>
@@ -346,7 +346,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Student Cohort Batches</h3>
                 <button
                   onClick={() => setShowModal("batch")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Batch</span>
@@ -354,7 +354,7 @@ export default function AcademicStructurePage() {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px] text-left text-xs">
-                  <thead className="bg-[#991b1b] text-white">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                     <tr>
                       <th className="px-4 py-3 font-semibold">Batch Name</th>
                       <th className="px-4 py-3 font-semibold">Program</th>
@@ -394,7 +394,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Course Subjects Directory</h3>
                 <button
                   onClick={() => setShowModal("subject")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Subject</span>
@@ -402,7 +402,7 @@ export default function AcademicStructurePage() {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[550px] text-left text-xs">
-                  <thead className="bg-[#991b1b] text-white">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-medium">
                     <tr>
                       <th className="px-4 py-3 font-semibold">Subject Code</th>
                       <th className="px-4 py-3 font-semibold">Subject Name</th>
@@ -421,7 +421,7 @@ export default function AcademicStructurePage() {
                     ) : (
                       subjects.map((sub) => (
                         <tr key={sub.id} className="hover:bg-slate-50">
-                          <td className="px-4 py-3 font-bold text-[#991b1b]">{sub.code}</td>
+                          <td className="px-4 py-3 font-bold text-slate-900 font-semibold tabular-nums">{sub.code}</td>
                           <td className="px-4 py-3 font-medium text-slate-800">{sub.name}</td>
                           <td className="px-4 py-3 text-slate-600">{sub.department?.name}</td>
                           <td className="px-4 py-3 text-center">
@@ -483,7 +483,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. Computer Science & Engineering"
                     value={deptForm.name}
                     onChange={(e) => setDeptForm({ ...deptForm, name: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -494,7 +494,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. CSE"
                     value={deptForm.code}
                     onChange={(e) => setDeptForm({ ...deptForm, code: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -502,7 +502,7 @@ export default function AcademicStructurePage() {
                   <textarea
                     value={deptForm.description}
                     onChange={(e) => setDeptForm({ ...deptForm, description: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div className="flex justify-end gap-2 pt-2">
@@ -516,7 +516,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                   >
                     {submitting ? "Saving..." : "Create Department"}
                   </button>
@@ -539,7 +539,7 @@ export default function AcademicStructurePage() {
                     required
                     value={progForm.departmentId}
                     onChange={(e) => setProgForm({ ...progForm, departmentId: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   >
                     <option value="">Select Department...</option>
                     {departments.map((d) => (
@@ -557,7 +557,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. Bachelor of Technology (CSE)"
                     value={progForm.name}
                     onChange={(e) => setProgForm({ ...progForm, name: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -568,7 +568,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. BTECH-CSE"
                     value={progForm.code}
                     onChange={(e) => setProgForm({ ...progForm, code: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -582,7 +582,7 @@ export default function AcademicStructurePage() {
                     onChange={(e) =>
                       setProgForm({ ...progForm, totalSemesters: parseInt(e.target.value) || 8 })
                     }
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div className="flex justify-end gap-2 pt-2">
@@ -596,7 +596,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                   >
                     {submitting ? "Saving..." : "Create Program"}
                   </button>
@@ -621,7 +621,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. 2025-2026"
                     value={yearForm.name}
                     onChange={(e) => setYearForm({ ...yearForm, name: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -632,7 +632,7 @@ export default function AcademicStructurePage() {
                       required
                       value={yearForm.startDate}
                       onChange={(e) => setYearForm({ ...yearForm, startDate: e.target.value })}
-                      className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                      className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                     />
                   </div>
                   <div>
@@ -642,7 +642,7 @@ export default function AcademicStructurePage() {
                       required
                       value={yearForm.endDate}
                       onChange={(e) => setYearForm({ ...yearForm, endDate: e.target.value })}
-                      className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                      className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                     />
                   </div>
                 </div>
@@ -651,7 +651,7 @@ export default function AcademicStructurePage() {
                     type="checkbox"
                     checked={yearForm.isCurrent}
                     onChange={(e) => setYearForm({ ...yearForm, isCurrent: e.target.checked })}
-                    className="rounded text-[#991b1b]"
+                    className="rounded text-slate-900 font-semibold tabular-nums"
                   />
                   <span className="text-xs text-slate-700">Set as Current Active Session</span>
                 </label>
@@ -666,7 +666,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                   >
                     {submitting ? "Saving..." : "Create Year"}
                   </button>
@@ -689,7 +689,7 @@ export default function AcademicStructurePage() {
                     required
                     value={batchForm.programId}
                     onChange={(e) => setBatchForm({ ...batchForm, programId: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   >
                     <option value="">Select Program...</option>
                     {programs.map((p) => (
@@ -705,7 +705,7 @@ export default function AcademicStructurePage() {
                     required
                     value={batchForm.academicYearId}
                     onChange={(e) => setBatchForm({ ...batchForm, academicYearId: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   >
                     <option value="">Select Year...</option>
                     {academicYears.map((y) => (
@@ -723,7 +723,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. Batch 2023-2027"
                     value={batchForm.name}
                     onChange={(e) => setBatchForm({ ...batchForm, name: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div className="flex justify-end gap-2 pt-2">
@@ -737,7 +737,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                   >
                     {submitting ? "Saving..." : "Create Batch"}
                   </button>
@@ -760,7 +760,7 @@ export default function AcademicStructurePage() {
                     required
                     value={subjectForm.departmentId}
                     onChange={(e) => setSubjectForm({ ...subjectForm, departmentId: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   >
                     <option value="">Select Department...</option>
                     {departments.map((d) => (
@@ -778,7 +778,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. CS-501"
                     value={subjectForm.code}
                     onChange={(e) => setSubjectForm({ ...subjectForm, code: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -789,7 +789,7 @@ export default function AcademicStructurePage() {
                     placeholder="e.g. Database Management Systems"
                     value={subjectForm.name}
                     onChange={(e) => setSubjectForm({ ...subjectForm, name: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
@@ -797,7 +797,7 @@ export default function AcademicStructurePage() {
                   <select
                     value={subjectForm.type}
                     onChange={(e) => setSubjectForm({ ...subjectForm, type: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   >
                     <option value="THEORY">Theory</option>
                     <option value="PRACTICAL">Practical</option>
@@ -815,7 +815,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                   >
                     {submitting ? "Saving..." : "Create Subject"}
                   </button>

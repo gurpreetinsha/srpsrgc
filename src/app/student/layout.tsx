@@ -21,28 +21,28 @@ export default async function StudentLayout({
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-red-800 bg-[#991b1b] text-white shadow-sm">
+      <header className="sticky top-0 z-30 border-b border-slate-800 bg-[#0b1727] text-white shadow-xs">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#991b1b] shadow">
-              <GraduationCap className="h-6 w-6" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 border border-slate-700 text-amber-400">
+              <GraduationCap className="h-5 w-5" />
             </div>
             <div>
-              <div className="text-sm sm:text-base font-bold tracking-tight text-white leading-tight">
+              <div className="text-sm font-semibold tracking-tight text-white leading-tight">
                 Shri Ram Group of Colleges
               </div>
-              <div className="text-[11px] sm:text-xs text-red-200 leading-tight">
+              <div className="text-[11px] text-slate-400 leading-tight">
                 Student Examination Portal
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center gap-1.5 rounded-full bg-red-900/70 px-2.5 py-1 text-xs text-red-100">
-              <User className="h-3.5 w-3.5 text-white" />
-              <span className="max-w-[120px] sm:max-w-[180px] truncate font-semibold text-white">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-300">
+              <User className="h-3.5 w-3.5 text-slate-400" />
+              <span className="max-w-[120px] sm:max-w-[180px] truncate tabular-nums font-medium text-white">
                 {session.user.identifier}
               </span>
             </div>
@@ -50,10 +50,10 @@ export default async function StudentLayout({
             <form action="/api/auth/logout" method="POST">
               <button
                 type="submit"
-                className="flex items-center gap-1.5 rounded-lg border border-red-700 bg-red-900/80 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-white transition hover:bg-red-800"
+                className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:bg-slate-700 hover:text-white"
               >
-                <LogOut className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Sign Out</span>
+                <LogOut className="h-3.5 w-3.5 text-slate-400" />
+                <span className="hidden sm:inline">Sign out</span>
               </button>
             </form>
           </div>

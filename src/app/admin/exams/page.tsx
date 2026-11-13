@@ -341,12 +341,12 @@ export default function ExaminationsAdminPage() {
   };
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
       {/* Title */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
-            Examinations & Result Publication
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
+            Examinations and Result Publication
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
             Orchestrate examination sessions, lock student rosters, moderate faculty marks, and publish official results.
@@ -355,9 +355,9 @@ export default function ExaminationsAdminPage() {
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#991b1b] px-4 py-2 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d] self-start sm:self-auto"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#0f2342] px-4 py-2 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727] self-start sm:self-auto"
         >
-          <Plus className="h-4 w-4 text-white" />
+          <Plus className="h-4 w-4 text-amber-400" />
           <span>New Examination Session</span>
         </button>
       </div>
@@ -380,14 +380,14 @@ export default function ExaminationsAdminPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Left Column: Examination Sessions */}
         <div className="lg:col-span-1 space-y-3">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          <h2 className="text-xs font-semibold text-slate-500">
             Examination Sessions ({exams.length})
           </h2>
 
           <div className="space-y-2 max-h-[700px] overflow-y-auto">
             {loading ? (
               <div className="flex h-32 items-center justify-center">
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#991b1b] border-t-transparent"></div>
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
               </div>
             ) : exams.length === 0 ? (
               <div className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-xs text-slate-400">
@@ -402,22 +402,22 @@ export default function ExaminationsAdminPage() {
                   <div
                     key={exam.id}
                     onClick={() => setSelectedExamId(exam.id)}
-                    className={`cursor-pointer rounded-xl border p-4 transition ${
+                    className={`cursor-pointer rounded-xl border p-4 transition-colors ${
                       isSelected
-                        ? "border-[#991b1b] bg-white shadow-md ring-1 ring-[#991b1b]"
-                        : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
+                        ? "border-slate-800 bg-white shadow-2xs border-l-4 border-l-amber-500"
+                        : "border-slate-200 bg-white hover:border-slate-300"
                     }`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className="rounded bg-red-50 px-2 py-0.5 text-[10px] font-bold text-[#991b1b]">
+                      <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-700 tabular-nums">
                         {exam.session}
                       </span>
                       <span
-                        className={`rounded px-2 py-0.5 text-[10px] font-bold ${
+                        className={`rounded px-2 py-0.5 text-[10px] font-medium ${
                           isPub
-                            ? "bg-emerald-100 text-emerald-800"
+                            ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
                             : exam.status === "UNDER_REVIEW"
-                            ? "bg-amber-100 text-amber-800"
+                            ? "bg-amber-50 text-amber-800 border border-amber-200"
                             : "bg-slate-100 text-slate-700"
                         }`}
                       >
@@ -457,18 +457,18 @@ export default function ExaminationsAdminPage() {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded bg-[#991b1b] px-2.5 py-0.5 text-xs font-bold text-white">
+                    <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-800 tabular-nums">
                       {selectedExamDetail.session}
                     </span>
-                    <span className="text-xs font-semibold text-slate-500">
+                    <span className="text-xs font-medium text-slate-500 tabular-nums">
                       Version: {selectedExamDetail.publication?.version || 1}
                     </span>
                   </div>
-                  <h2 className="mt-1 text-xl font-bold text-slate-900">
+                  <h2 className="mt-1 text-xl font-semibold text-slate-900">
                     {selectedExamDetail.title}
                   </h2>
                   <p className="text-xs text-slate-500">
-                    {selectedExamDetail.program?.name} &bull; {selectedExamDetail.semester?.title} &bull; Academic Year: {selectedExamDetail.academicYear?.name}
+                    {selectedExamDetail.program?.name} • {selectedExamDetail.semester?.title} • Academic Year: {selectedExamDetail.academicYear?.name}
                   </p>
                 </div>
 
@@ -477,7 +477,7 @@ export default function ExaminationsAdminPage() {
                   {selectedExamDetail.publication?.status === "PUBLISHED" ? (
                     <button
                       onClick={() => setShowUnpublishModal(true)}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-red-300 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-800 hover:bg-red-100"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-red-300 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-800 hover:bg-red-100"
                     >
                       <RotateCcw className="h-3.5 w-3.5" />
                       <span>Unpublish Results</span>
@@ -486,7 +486,7 @@ export default function ExaminationsAdminPage() {
                     <button
                       onClick={handlePublishResults}
                       disabled={!gateCheck?.canPublish || submitting}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow hover:bg-emerald-800 disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-medium text-white shadow-2xs hover:bg-emerald-800 disabled:opacity-50"
                     >
                       <ShieldCheck className="h-4 w-4" />
                       <span>Publish Results Officially</span>
@@ -503,7 +503,7 @@ export default function ExaminationsAdminPage() {
                     : "border-amber-200 bg-amber-50/50 text-amber-900"
                 }`}
               >
-                <div className="flex items-center justify-between font-bold">
+                <div className="flex items-center justify-between font-semibold">
                   <span className="flex items-center gap-2">
                     {gateCheck?.canPublish ? (
                       <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -529,19 +529,19 @@ export default function ExaminationsAdminPage() {
               {/* Roster & Snapshot Controls */}
               <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800">
+                  <h4 className="text-xs font-semibold text-slate-800">
                     Candidate Enrollment Snapshot Roster
                   </h4>
                   <p className="text-[11px] text-slate-500">
-                    Snapshot frozen: <strong className="text-slate-900">{selectedExamDetail.enrollments?.length || 0} students</strong>. Results are calculated exclusively against frozen snapshots.
+                    Snapshot frozen: <strong className="text-slate-900 tabular-nums">{selectedExamDetail.enrollments?.length || 0} students</strong>. Results are calculated exclusively against frozen snapshots.
                   </p>
                 </div>
                 <button
                   onClick={handleFreezeRoster}
                   disabled={submitting || selectedExamDetail.publication?.status === "PUBLISHED"}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50 disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-2xs hover:bg-slate-50 disabled:opacity-50"
                 >
-                  <Users className="h-3.5 w-3.5 text-[#991b1b]" />
+                  <Users className="h-3.5 w-3.5 text-slate-500" />
                   <span>Freeze / Sync Snapshot</span>
                 </button>
               </div>
@@ -549,13 +549,13 @@ export default function ExaminationsAdminPage() {
               {/* Exam Subjects & Marks Table */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-sm font-semibold text-slate-900">
                     Configured Examination Subjects
                   </h3>
                   <button
                     onClick={() => setShowAddSubjectModal(true)}
                     disabled={selectedExamDetail.publication?.status === "PUBLISHED"}
-                    className="inline-flex items-center gap-1 rounded bg-[#991b1b] px-2.5 py-1 text-xs font-semibold text-white hover:bg-[#7f1d1d] disabled:opacity-50"
+                    className="inline-flex items-center gap-1 rounded bg-[#0f2342] px-2.5 py-1 text-xs font-medium text-white hover:bg-[#0b1727] disabled:opacity-50"
                   >
                     <Plus className="h-3 w-3" />
                     <span>Add Subject</span>
@@ -576,18 +576,18 @@ export default function ExaminationsAdminPage() {
                         <div key={es.id} className="p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-xs text-[#991b1b]">
+                              <span className="font-semibold text-xs text-slate-900 tabular-nums">
                                 {es.subject.code}
                               </span>
                               <span className="font-medium text-xs text-slate-800">
                                 {es.subject.name}
                               </span>
                             </div>
-                            <div className="mt-1 text-[11px] text-slate-500">
-                              Max Internal: {es.maxInternalMarks} &bull; Max External: {es.maxExternalMarks} &bull; Pass Mark: {es.minTotalMarks}
+                            <div className="mt-1 text-[11px] text-slate-500 tabular-nums">
+                              Max Internal: {es.maxInternalMarks} • Max External: {es.maxExternalMarks} • Pass Mark: {es.minTotalMarks}
                             </div>
-                            <div className="mt-1 text-[11px] font-semibold text-slate-600">
-                              Marks Recorded: {marksEntered} / {selectedExamDetail.enrollments?.length || 0}
+                            <div className="mt-1 text-[11px] font-medium text-slate-600">
+                              Marks Recorded: <span className="tabular-nums">{marksEntered} / {selectedExamDetail.enrollments?.length || 0}</span>
                             </div>
                           </div>
 
@@ -708,23 +708,23 @@ export default function ExaminationsAdminPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div>
-                  <label className="text-xs font-bold text-slate-700">Start Date</label>
+                  <label className="text-xs font-medium text-slate-700">Start Date</label>
                   <input
                     type="date"
                     required
                     value={examForm.startDate}
                     onChange={(e) => setExamForm({ ...examForm, startDate: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-slate-700">End Date</label>
+                  <label className="text-xs font-medium text-slate-700">End Date</label>
                   <input
                     type="date"
                     required
                     value={examForm.endDate}
                     onChange={(e) => setExamForm({ ...examForm, endDate: e.target.value })}
-                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-[#991b1b] focus:outline-none"
+                    className="mt-1 w-full rounded border border-slate-300 p-2 text-xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
                   />
                 </div>
               </div>
@@ -733,14 +733,14 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-700"
+                  className="rounded border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                  className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                 >
                   {submitting ? "Creating..." : "Establish Examination"}
                 </button>
@@ -823,14 +823,14 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddSubjectModal(false)}
-                  className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-700"
+                  className="rounded border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#991b1b] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#7f1d1d]"
+                  className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
                 >
                   {submitting ? "Adding..." : "Add to Exam"}
                 </button>

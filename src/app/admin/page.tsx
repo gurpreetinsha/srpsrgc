@@ -7,7 +7,7 @@ import {
   FileCheck2,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -43,107 +43,107 @@ export default async function AdminDashboardPage() {
   ]);
 
   return (
-    <div className="space-y-6 sm:space-y-8">
-      {/* Welcome Banner */}
+    <div className="space-y-6 sm:space-y-8 text-slate-900">
+      {/* Overview Banner */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
             Administration Overview
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
-            Shri Ram Group of Colleges &bull; Master result orchestration, publication, and institutional data.
+            Shri Ram Group of Colleges • Result orchestration, publication, and institutional records
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
-            System Operational
+            System operational
           </span>
         </div>
       </div>
 
       {/* Institutional Statistics Cards */}
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Students Enrolled
+            <span className="text-xs font-medium text-slate-500">
+              Students enrolled
             </span>
-            <div className="rounded-lg bg-blue-50 p-2 text-blue-700">
-              <GraduationCap className="h-5 w-5" />
+            <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+              <GraduationCap className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-bold text-slate-900">{studentCount}</div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums text-slate-950">{studentCount}</div>
           <div className="mt-1 text-xs text-slate-500">Registered across all batches</div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Faculty Instructors
+            <span className="text-xs font-medium text-slate-500">
+              Faculty instructors
             </span>
-            <div className="rounded-lg bg-indigo-50 p-2 text-indigo-700">
-              <Users className="h-5 w-5" />
+            <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+              <Users className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-bold text-slate-900">{facultyCount}</div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums text-slate-950">{facultyCount}</div>
           <div className="mt-1 text-xs text-slate-500">Active teaching staff</div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Degree Programs
+            <span className="text-xs font-medium text-slate-500">
+              Degree programs
             </span>
-            <div className="rounded-lg bg-amber-50 p-2 text-amber-700">
-              <Building className="h-5 w-5" />
+            <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+              <Building className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-bold text-slate-900">{programCount}</div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums text-slate-950">{programCount}</div>
           <div className="mt-1 text-xs text-slate-500">Department curriculum courses</div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Exams Published
+            <span className="text-xs font-medium text-slate-500">
+              Exams published
             </span>
-            <div className="rounded-lg bg-emerald-50 p-2 text-emerald-700">
-              <FileCheck2 className="h-5 w-5" />
+            <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+              <FileCheck2 className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-bold text-slate-900">
-            {publishedCount} / {examCount}
+          <div className="mt-3 text-2xl font-semibold tabular-nums text-slate-950">
+            {publishedCount} <span className="text-sm font-normal text-slate-400">/ {examCount}</span>
           </div>
           <div className="mt-1 text-xs text-slate-500">Official sessions finalized</div>
         </div>
       </div>
 
       {/* Guided Onboarding Wizard Card */}
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-        <div className="border-b border-red-800 bg-gradient-to-r from-[#991b1b] to-[#7f1d1d] p-5 sm:p-6 text-white">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
+        <div className="border-b border-slate-200 bg-slate-900 p-5 sm:p-6 text-white">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-white" />
-                <h2 className="text-base sm:text-lg font-bold">Institutional Setup & Onboarding Wizard</h2>
+                <ShieldCheck className="h-5 w-5 text-amber-400" />
+                <h2 className="text-sm sm:text-base font-semibold">Institutional setup and onboarding</h2>
               </div>
-              <p className="mt-1 text-xs text-red-100">
-                Complete all foundational milestones to ensure strict academic compliance and error-free result publication.
+              <p className="mt-1 text-xs text-slate-300">
+                Foundational academic milestones required before result evaluation and publication.
               </p>
             </div>
             <div className="sm:text-right">
-              <span className="text-2xl font-extrabold text-white">
+              <span className="text-xl font-semibold text-white tabular-nums">
                 {onboarding.completionPercentage}%
               </span>
-              <span className="text-xs text-red-100 block">Complete</span>
+              <span className="text-[11px] text-slate-400 block">Complete</span>
             </div>
           </div>
 
           {/* Progress bar */}
-          <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-red-950/60">
+          <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
             <div
-              className="h-full bg-white transition-all duration-500 shadow"
+              className="h-full bg-amber-400 transition-all duration-300"
               style={{ width: `${onboarding.completionPercentage}%` }}
             ></div>
           </div>
@@ -155,27 +155,27 @@ export default async function AdminDashboardPage() {
               return (
                 <div
                   key={step.key}
-                  className={`flex flex-col justify-between rounded-lg border p-4 transition ${
+                  className={`flex flex-col justify-between rounded-lg border p-4 transition-colors ${
                     step.isComplete
-                      ? "border-emerald-200 bg-emerald-50/50"
+                      ? "border-emerald-200 bg-emerald-50/40"
                       : "border-slate-200 bg-slate-50/50"
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">{step.label}</span>
+                      <span className="text-xs font-semibold text-slate-900">{step.label}</span>
                       {step.isComplete ? (
                         <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                       ) : (
-                        <span className="rounded bg-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700">
+                        <span className="rounded bg-slate-200 px-1.5 py-0.5 text-[10px] font-medium text-slate-700">
                           Pending
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 text-[11px] text-slate-500">{step.description}</p>
+                    <p className="mt-1 text-[11px] text-slate-500 leading-normal">{step.description}</p>
                   </div>
-                  <div className="mt-3 text-[11px] font-semibold text-slate-600">
-                    Registered: <span className="text-slate-900 font-bold">{step.count}</span>
+                  <div className="mt-3 text-[11px] font-medium text-slate-600">
+                    Registered: <span className="text-slate-900 font-semibold tabular-nums">{step.count}</span>
                   </div>
                 </div>
               );
@@ -185,21 +185,21 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Two Column Grid: Recent Examinations & Recent Audit Activity */}
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2">
         {/* Recent Examinations */}
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs">
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-            <h3 className="font-bold text-slate-900">Recent Examinations</h3>
+            <h3 className="text-sm font-semibold text-slate-900">Recent examinations</h3>
             <Link
               href="/admin/exams"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#991b1b] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 hover:text-slate-900"
             >
-              <span>Manage Exams</span>
+              <span>Manage exams</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="mt-4 divide-y divide-slate-100">
+          <div className="mt-3 divide-y divide-slate-100">
             {recentExams.length === 0 ? (
               <div className="py-6 text-center text-xs text-slate-500">
                 No examination sessions created yet.
@@ -208,21 +208,21 @@ export default async function AdminDashboardPage() {
               recentExams.map((exam) => (
                 <div key={exam.id} className="py-3 flex items-center justify-between">
                   <div>
-                    <div className="font-semibold text-xs text-slate-900">{exam.title}</div>
-                    <div className="text-[11px] text-slate-500">
-                      {exam.program.name} &bull; {exam.semester.title} &bull; {exam.academicYear.name}
+                    <div className="text-xs font-medium text-slate-900">{exam.title}</div>
+                    <div className="text-[11px] text-slate-500 mt-0.5">
+                      {exam.program.name} • {exam.semester.title} • {exam.academicYear.name}
                     </div>
                   </div>
                   <span
-                    className={`rounded px-2 py-0.5 text-[10px] font-bold ${
+                    className={`rounded px-2 py-0.5 text-[10px] font-medium ${
                       exam.publication?.status === "PUBLISHED"
-                        ? "bg-emerald-100 text-emerald-800"
+                        ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
                         : exam.status === "UNDER_REVIEW"
-                        ? "bg-amber-100 text-amber-800"
-                        : "bg-slate-100 text-slate-700"
+                        ? "bg-amber-50 text-amber-800 border border-amber-200"
+                        : "bg-slate-100 text-slate-700 border border-slate-200"
                     }`}
                   >
-                    {exam.publication?.status === "PUBLISHED" ? "PUBLISHED" : exam.status}
+                    {exam.publication?.status === "PUBLISHED" ? "Published" : exam.status}
                   </span>
                 </div>
               ))
@@ -231,19 +231,19 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Recent Audit Activity */}
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs">
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-            <h3 className="font-bold text-slate-900">Audit Trail Activity</h3>
+            <h3 className="text-sm font-semibold text-slate-900">Audit trail activity</h3>
             <Link
               href="/admin/audit"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#991b1b] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 hover:text-slate-900"
             >
-              <span>Full Audit Logs</span>
+              <span>Full audit logs</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="mt-4 divide-y divide-slate-100">
+          <div className="mt-3 divide-y divide-slate-100">
             {recentAudits.length === 0 ? (
               <div className="py-6 text-center text-xs text-slate-500">
                 No audit events recorded yet.
@@ -252,14 +252,14 @@ export default async function AdminDashboardPage() {
               recentAudits.map((log) => (
                 <div key={log.id} className="py-3 flex items-center justify-between">
                   <div className="truncate pr-4">
-                    <div className="font-semibold text-xs text-slate-900">
+                    <div className="text-xs font-medium text-slate-900">
                       {log.action} on {log.entityType}
                     </div>
-                    <div className="text-[11px] text-slate-500 truncate">
-                      Actor: {log.user?.identifier || "System"} &bull; {log.ipAddress || "Internal"}
+                    <div className="text-[11px] text-slate-500 truncate mt-0.5">
+                      Actor: {log.user?.identifier || "System"} • {log.ipAddress || "Internal"}
                     </div>
                   </div>
-                  <div className="shrink-0 text-right text-[10px] text-slate-400">
+                  <div className="shrink-0 text-right text-[11px] text-slate-400 tabular-nums">
                     {new Date(log.createdAt).toLocaleTimeString()}
                   </div>
                 </div>

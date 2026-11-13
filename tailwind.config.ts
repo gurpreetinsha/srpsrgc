@@ -9,6 +9,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          '"Google Sans Flex"',
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -21,17 +38,18 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "#991b1b", // Rich SRGC Collegiate Red
-          50: "#fef2f2",
-          100: "#fee2e2",
-          200: "#fecaca",
-          300: "#fca5a5",
-          400: "#f87171",
-          500: "#ef4444",
-          600: "#dc2626",
-          700: "#b91c1c",
-          800: "#991b1b",
-          900: "#7f1d1d",
+          DEFAULT: "#0f2342", // Stately Collegiate Navy
+          50: "#f1f5f9",
+          100: "#e2e8f0",
+          200: "#cbd5e1",
+          300: "#94a3b8",
+          400: "#64748b",
+          500: "#334155",
+          600: "#1e293b",
+          700: "#162846",
+          800: "#0f2342",
+          900: "#0b1727",
+          950: "#060e19",
           foreground: "#ffffff",
         },
         secondary: {
@@ -39,18 +57,35 @@ const config: Config = {
           foreground: "#0f172a",
         },
         accent: {
-          DEFAULT: "#b91c1c", // SRGC Bright Red Accent
-          50: "#fef2f2",
-          100: "#fee2e2",
-          200: "#fecaca",
-          300: "#fca5a5",
-          400: "#f87171",
-          500: "#ef4444",
-          600: "#dc2626",
-          700: "#b91c1c",
-          800: "#991b1b",
-          900: "#7f1d1d",
+          DEFAULT: "#b45309", // Restrained Collegiate Amber/Gold
+          50: "#fffbeb",
+          100: "#fef3c7",
+          200: "#fde68a",
+          300: "#fcd34d",
+          400: "#fbbf24",
+          500: "#f59e0b",
+          600: "#d97706",
+          700: "#b45309",
+          800: "#92400e",
+          900: "#78350f",
           foreground: "#ffffff",
+        },
+        navy: {
+          50: "#f1f5f9",
+          100: "#e2e8f0",
+          200: "#cbd5e1",
+          700: "#1a2c47",
+          800: "#112036",
+          900: "#0b1727",
+          950: "#060e19",
+        },
+        gold: {
+          50: "#fffbeb",
+          100: "#fef3c7",
+          500: "#f59e0b",
+          600: "#d97706",
+          700: "#b45309",
+          800: "#92400e",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -75,4 +110,3 @@ const config: Config = {
 };
 
 export default config;
-

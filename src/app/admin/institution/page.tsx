@@ -96,17 +96,17 @@ export default function InstitutionSettingsPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl space-y-6">
+    <div className="max-w-4xl space-y-6 text-slate-900">
       {/* Title */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
-          Institution Settings & Configuration
+        <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
+          Institution Settings and Configuration
         </h1>
         <p className="text-xs sm:text-sm text-slate-500">
           Configure Shri Ram Group of Colleges branding, current academic session, and student rank visibility policies.
@@ -139,82 +139,82 @@ export default function InstitutionSettingsPage() {
         <div className="p-6 space-y-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
-              <label className="block text-xs font-bold text-slate-700">Institution Name</label>
+              <label className="block text-xs font-medium text-slate-700">Institution Name</label>
               <input
                 type="text"
                 required
                 value={form.institutionName}
                 onChange={(e) => setForm({ ...form, institutionName: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700">Institution Code</label>
+              <label className="block text-xs font-medium text-slate-700">Institution Code</label>
               <input
                 type="text"
                 required
                 value={form.institutionCode}
                 onChange={(e) => setForm({ ...form, institutionCode: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700">Tagline / Motto</label>
+            <label className="block text-xs font-medium text-slate-700">Tagline / Motto</label>
             <input
               type="text"
               value={form.tagline || ""}
               onChange={(e) => setForm({ ...form, tagline: e.target.value })}
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700">Campus Address</label>
+            <label className="block text-xs font-medium text-slate-700">Campus Address</label>
             <textarea
               rows={2}
               value={form.address || ""}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
             />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
             <div>
-              <label className="block text-xs font-bold text-slate-700">Contact Email</label>
+              <label className="block text-xs font-medium text-slate-700">Contact Email</label>
               <input
                 type="email"
                 value={form.contactEmail || ""}
                 onChange={(e) => setForm({ ...form, contactEmail: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700">Contact Phone</label>
+              <label className="block text-xs font-medium text-slate-700">Contact Phone</label>
               <input
                 type="text"
                 value={form.contactPhone || ""}
                 onChange={(e) => setForm({ ...form, contactPhone: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700">Website URL</label>
+              <label className="block text-xs font-medium text-slate-700">Website URL</label>
               <input
                 type="url"
                 value={form.websiteUrl || ""}
                 onChange={(e) => setForm({ ...form, websiteUrl: e.target.value })}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
           </div>
 
           <div className="border-t border-slate-100 pt-6">
-            <h2 className="text-base font-bold text-slate-900">Academic Sessions & Privacy Policy</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Academic Sessions and Privacy Policy</h2>
             <p className="text-xs text-slate-500">
               Control academic parameters and student result confidentiality.
             </p>
@@ -222,19 +222,19 @@ export default function InstitutionSettingsPage() {
 
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
-              <label className="block text-xs font-bold text-slate-700">Current Academic Session</label>
+              <label className="block text-xs font-medium text-slate-700">Current Academic Session</label>
               <input
                 type="text"
                 required
                 value={form.currentAcademicSession}
                 onChange={(e) => setForm({ ...form, currentAcademicSession: e.target.value })}
                 placeholder="2025-2026"
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700">
+              <label className="block text-xs font-medium text-slate-700">
                 Default Passing Percentage (%)
               </label>
               <input
@@ -248,7 +248,7 @@ export default function InstitutionSettingsPage() {
                     defaultPassingPercentage: parseFloat(e.target.value) || 40,
                   })
                 }
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-[#991b1b] focus:outline-none focus:ring-1 focus:ring-[#991b1b]"
+                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900 focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
               />
             </div>
           </div>
@@ -260,10 +260,10 @@ export default function InstitutionSettingsPage() {
                 type="checkbox"
                 checked={form.allowStudentRankView}
                 onChange={(e) => setForm({ ...form, allowStudentRankView: e.target.checked })}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#991b1b] focus:ring-[#991b1b]"
+                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0f2342] focus:ring-slate-800"
               />
               <div>
-                <span className="text-xs font-bold text-slate-900">
+                <span className="text-xs font-medium text-slate-900">
                   Allow Students to View Batch / Class Rank
                 </span>
                 <p className="mt-0.5 text-xs text-slate-500">
@@ -278,9 +278,9 @@ export default function InstitutionSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg bg-[#991b1b] px-5 py-2 text-xs font-semibold text-white shadow transition hover:bg-[#7f1d1d] disabled:opacity-50"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg bg-[#0f2342] px-5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#0b1727] disabled:opacity-50"
           >
-            <Save className="h-4 w-4 text-white" />
+            <Save className="h-4 w-4 text-amber-400" />
             <span>{saving ? "Saving Changes..." : "Save Settings"}</span>
           </button>
         </div>

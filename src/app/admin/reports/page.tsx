@@ -75,12 +75,12 @@ export default function ReportsAdminPage() {
   }, [selectedExamId]);
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
       {/* Title */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#991b1b]">
-            Reports & Academic Analytics
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
+            Reports and Academic Analytics
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
             Official institutional performance summaries, grade distributions, and sanitized spreadsheet exports.
@@ -93,7 +93,7 @@ export default function ReportsAdminPage() {
             <select
               value={selectedExamId}
               onChange={(e) => setSelectedExamId(e.target.value)}
-              className="w-full sm:w-auto rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm focus:border-[#991b1b] focus:outline-none"
+              className="w-full sm:w-auto rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-800 shadow-2xs focus:border-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-800"
             >
               {exams.map((ex) => (
                 <option key={ex.id} value={ex.id}>
@@ -115,9 +115,9 @@ export default function ReportsAdminPage() {
 
       {/* When no published exams exist */}
       {exams.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm">
-          <BarChart3 className="mb-3 h-12 w-12 text-slate-300" />
-          <h3 className="text-base font-semibold text-slate-800">No Published Examination Records</h3>
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-2xs">
+          <BarChart3 className="mb-3 h-10 w-10 text-slate-300" />
+          <h3 className="text-sm font-semibold text-slate-800">No published examination records</h3>
           <p className="mt-1 max-w-sm text-xs text-slate-500">
             Performance analytics and exportable rosters become accessible once results are officially published in the Examinations tab.
           </p>
@@ -127,24 +127,24 @@ export default function ReportsAdminPage() {
       {/* Report view */}
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#991b1b] border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
         </div>
       ) : report ? (
         <div className="space-y-6">
           {/* Header & Export Actions */}
-          <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <span className="rounded bg-[#991b1b] px-2.5 py-0.5 text-xs font-bold text-white">
+              <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800">
                 {report.programName}
               </span>
-              <h2 className="mt-1 text-lg sm:text-xl font-bold text-slate-900">{report.examinationTitle}</h2>
+              <h2 className="mt-1.5 text-lg sm:text-xl font-semibold text-slate-900">{report.examinationTitle}</h2>
               <p className="text-xs text-slate-500">Academic Year: {report.academicYear}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
               <a
                 href={`/api/admin/reports/export?examinationId=${report.examinationId}&format=csv`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-2xs hover:bg-slate-50"
               >
                 <FileText className="h-4 w-4 text-slate-500" />
                 <span>Export CSV</span>
@@ -152,9 +152,9 @@ export default function ReportsAdminPage() {
 
               <a
                 href={`/api/admin/reports/export?examinationId=${report.examinationId}&format=xlsx`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-[#991b1b] px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-[#7f1d1d]"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3.5 py-2 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
               >
-                <FileSpreadsheet className="h-4 w-4 text-white" />
+                <FileSpreadsheet className="h-4 w-4 text-amber-400" />
                 <span>Export Excel (.xlsx)</span>
               </a>
             </div>
@@ -162,50 +162,50 @@ export default function ReportsAdminPage() {
 
           {/* KPI Summary Cards */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs font-medium text-slate-500">
                 <span>Total Candidates</span>
-                <Users className="h-4 w-4 text-blue-600" />
+                <Users className="h-4 w-4 text-slate-400" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-slate-900">{report.totalEnrolled}</div>
+              <div className="mt-2 text-2xl font-semibold tabular-nums text-slate-950">{report.totalEnrolled}</div>
               <div className="mt-1 text-xs text-slate-400">Snapshot candidate roster</div>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs font-medium text-slate-500">
                 <span>Pass Rate</span>
                 <Percent className="h-4 w-4 text-emerald-600" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-emerald-700">{report.passPercentage}%</div>
+              <div className="mt-2 text-2xl font-semibold tabular-nums text-emerald-700">{report.passPercentage}%</div>
               <div className="mt-1 text-xs text-slate-500">
-                {report.totalPassed} Passed &bull; {report.totalFailed} Failed
+                {report.totalPassed} Passed • {report.totalFailed} Failed
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs font-medium text-slate-500">
                 <span>Average SGPA</span>
-                <Award className="h-4 w-4 text-[#991b1b]" />
+                <Award className="h-4 w-4 text-amber-600" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-[#991b1b]">
+              <div className="mt-2 text-2xl font-semibold tabular-nums text-slate-950">
                 {report.averageSgpa !== null ? report.averageSgpa : "N/A"}
               </div>
               <div className="mt-1 text-xs text-slate-400">Across passing candidates</div>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs font-medium text-slate-500">
                 <span>Withheld</span>
                 <AlertCircle className="h-4 w-4 text-amber-600" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-amber-700">{report.totalWithheld}</div>
+              <div className="mt-2 text-2xl font-semibold tabular-nums text-amber-700">{report.totalWithheld}</div>
               <div className="mt-1 text-xs text-slate-400">Pending administrative clearance</div>
             </div>
           </div>
 
           {/* Grade Distribution Breakdown */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-base font-bold text-slate-900">Course Subject Grade Distribution</h3>
+          <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs">
+            <h3 className="text-sm font-semibold text-slate-900">Course Subject Grade Distribution</h3>
             <p className="text-xs text-slate-500">
               Aggregated frequency of letter grades assigned across all examination course subjects.
             </p>
@@ -216,8 +216,8 @@ export default function ReportsAdminPage() {
                   key={grade}
                   className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center"
                 >
-                  <div className="text-xs font-bold text-[#991b1b]">{grade}</div>
-                  <div className="mt-1 text-lg font-bold text-slate-900">{count}</div>
+                  <div className="text-xs font-semibold text-slate-900">{grade}</div>
+                  <div className="mt-1 text-base font-semibold tabular-nums text-slate-900">{count}</div>
                   <div className="text-[10px] text-slate-400">marks</div>
                 </div>
               ))}
