@@ -268,3 +268,4 @@ await prisma.$transaction(async (tx) => {
    - `Strict-Transport-Security`: HSTS enabled in production.
    - `Referrer-Policy: strict-origin-when-cross-origin`.
 4. **Rate Limiting**: Backed by PostgreSQL atomic upsert queries with timestamp-based window expiration, guaranteeing that serverless restarts or multiple instances share the exact same rate limit counts.
+

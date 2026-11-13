@@ -15,3 +15,4 @@ export async function getCurrentSession(): Promise<SessionContext | null> {
 
   return validateSessionToken(token);
 }
+

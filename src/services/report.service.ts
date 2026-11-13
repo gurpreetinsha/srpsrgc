@@ -194,3 +194,4 @@ export class ReportService {
     return (await workbook.xlsx.writeBuffer()) as unknown as Buffer;
   }
 }
+

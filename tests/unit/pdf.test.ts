@@ -68,3 +68,4 @@ describe("Phase 7: Pure-JS PDF Transcript Generator Unit Tests", () => {
     expect(header).toBe("%PDF-");
   });
 });
+

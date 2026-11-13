@@ -150,3 +150,4 @@ export function assertResultAccess(
   // Faculty cannot view student's full cross-subject semester card unless explicitly permitted
   throw new ForbiddenError("Insufficient permissions to access this result card");
 }
+

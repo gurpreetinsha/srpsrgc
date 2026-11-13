@@ -75,3 +75,4 @@ export const SubjectCreditSchema = z.object({
   (data) => data.minExternalMarks <= data.maxExternalMarks,
   { message: "Min external marks cannot exceed max external marks", path: ["minExternalMarks"] }
 );
+

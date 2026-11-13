@@ -44,3 +44,4 @@ export const FacultyAssignmentSchema = z.object({
   academicYearId: z.string().uuid("Invalid academic year ID"),
   role: z.nativeEnum(AssignmentRole).default(AssignmentRole.PRIMARY),
 });
+

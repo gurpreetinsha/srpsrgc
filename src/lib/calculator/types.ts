@@ -139,3 +139,4 @@ export interface CgpaCalculationResult {
   cgpa: number | null;
   equivalentPercentage: number | null;
 }
+

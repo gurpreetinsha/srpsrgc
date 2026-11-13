@@ -202,3 +202,4 @@ The calculation engine is implemented as a **pure, zero-dependency, framework-ag
 - First administrator created exclusively via offline CLI command: `pnpm bootstrap:admin`.
 - Comprehensive test suite: Unit tests for calculation engine, integration tests for repositories and services, API authorization tests, and Playwright end-to-end user journey tests.
 - Every phase gated by strict verification: Prisma validate, TypeScript noEmit, ESLint, Unit/Integration tests, and Next.js build.
+

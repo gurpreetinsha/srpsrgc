@@ -239,3 +239,4 @@ Institutional policies that are fully configurable in code and require administr
 3. **Grace Marks**: Disabled by default; configurable via `PassingCriteria.allowGraceMarks` (max 3 marks).
 4. **Student Rank Visibility**: Disabled by default; configurable via `InstitutionSetting.allowStudentRankView`.
 5. **SGPA to Percentage Factor**: Default is 9.5; configurable via `ResultCalculationPolicy.percentageMultiplier`.
+

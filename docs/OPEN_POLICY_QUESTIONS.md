@@ -58,3 +58,4 @@ Every item listed below is implemented in code as a **configurable parameter** i
 | **Affiliation & Accreditation**| Configurable placeholder text in admin settings | What is the exact affiliating university text (e.g., "Affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow" or "CCSU Meerut")? |
 | **Official Signatories**       | "Controller of Examinations" & "Registrar" | Whose titles and digital signatures should be designated on official PDF result cards? |
 | **Campus Addresses & Codes**   | Admin-configurable in `InstitutionSetting` | Exact college codes, address, contact telephone numbers, and official inquiry email addresses. |
+

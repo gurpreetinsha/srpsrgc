@@ -102,3 +102,4 @@ This document records the foundational architectural decisions, context, and rat
   - Every mutation (marks entry, submission, review, approval, publication, unpublication, correction) must record an `AuditLog` entry in the *exact same* database transaction.
   - Post-publication mark modifications require a written reason, create a `MarkCorrectionAudit` record, and enforce optimistic concurrency using record `version` counters.
 - **Rationale**: Guarantees zero orphan changes and guarantees a verifiable audit trail with race-condition prevention.
+

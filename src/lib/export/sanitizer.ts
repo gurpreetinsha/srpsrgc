@@ -38,3 +38,4 @@ export function sanitizeExportRow(row: Record<string, unknown>): Record<string, 
   }
   return sanitized;
 }
+
