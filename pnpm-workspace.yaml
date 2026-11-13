@@ -4,3 +4,10 @@ allowBuilds:
   esbuild: true
   prisma: true
   sharp: true
+
+overrides:
+  postcss: ">=8.5.32"
+  csv-parse: ">=7.0.2"
+  vitest: ">=3.2.6"
+  playwright: ">=1.55.1"
+  '@playwright/test': ">=1.55.1"
