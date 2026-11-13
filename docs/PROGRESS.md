@@ -21,13 +21,13 @@
 | **Phase 1** | Schema + Initial Migration against clean Postgres | **IMPLEMENTATION COMPLETE** | prisma validate, prisma generate, migration SQL | `4ae640f` |
 | **Phase 2** | Calculation Engine + Unit Test Suite (Pure Module) | **IMPLEMENTATION COMPLETE** | 21 Vitest unit tests passing | `9b0cb72` |
 | **Phase 3** | Auth, Sessions, RBAC, Rate Limiting, Audit, Admin CLI | **IMPLEMENTATION COMPLETE** | 34 unit tests pass, Argon2id verified, bootstrap CLI | `1de9065` |
-| **Phase 4** | Institution Settings + Academic Structure + Onboarding | **IMPLEMENTATION COMPLETE** | Strict typecheck, service architecture, wizard engine | `Pending` |
-| **Phase 5** | People Management, Enrollments, Assignments, Imports | **IMPLEMENTATION COMPLETE** | ExcelJS & CSV parsers, formula injection sanitization | `Pending` |
-| **Phase 6** | Exams, Marks Entry, Submission, Review, Publication | **IMPLEMENTATION COMPLETE** | Concurrency checks, pre-publication gates, correction audit | `Pending` |
-| **Phase 7** | Student Portal + PDF Generation | **IMPLEMENTATION COMPLETE** | Pure-JS PDF generation verified (pdf-lib, A4 SRGC card) | `Pending` |
-| **Phase 8** | Reports, Exports, Notifications, Audit UI | **IMPLEMENTATION COMPLETE** | Sanitized exports, in-app notifications, audit explorer | `Pending` |
-| **Phase 9** | Hardening: Headers, Authz Sweep, E2E, Audit, A11y | **IMPLEMENTATION COMPLETE** | 53 tests passing across 5 suites, strict CSP/HSTS | `Pending` |
-| **Phase 10**| Final Docs + ENGINEERING_COMPLETION_REPORT.md | **READY FOR STAGING** | Complete deliverables & operational runbooks | `Pending` |
+| **Phase 4** | Institution Settings + Academic Structure + Onboarding | **IMPLEMENTATION COMPLETE** | Strict typecheck, service architecture, wizard engine | `76b0f8d` |
+| **Phase 5** | People Management, Enrollments, Assignments, Imports | **IMPLEMENTATION COMPLETE** | ExcelJS & CSV parsers, formula injection sanitization | `76b0f8d` |
+| **Phase 6** | Exams, Marks Entry, Submission, Review, Publication | **IMPLEMENTATION COMPLETE** | Concurrency checks, pre-publication gates, correction audit | `76b0f8d` |
+| **Phase 7** | Student Portal + PDF Generation | **IMPLEMENTATION COMPLETE** | Pure-JS PDF generation verified (pdf-lib, A4 SRGC card) | `76b0f8d` |
+| **Phase 8** | Reports, Exports, Notifications, Audit UI | **IMPLEMENTATION COMPLETE** | Sanitized exports, in-app notifications, audit explorer | `76b0f8d` |
+| **Phase 9** | Hardening: Headers, Authz Sweep, E2E, Audit, A11y | **IMPLEMENTATION COMPLETE** | 53 tests passing across 5 suites, strict CSP/HSTS | `76b0f8d` |
+| **Phase 10**| Final Docs + ENGINEERING_COMPLETION_REPORT.md | **READY FOR STAGING** | Complete deliverables & operational runbooks | `76b0f8d` |
 
 ---
 
