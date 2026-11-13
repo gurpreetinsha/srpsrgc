@@ -5,6 +5,8 @@ import { createSession, SESSION_COOKIE_NAME, SESSION_MAX_AGE_SECONDS } from "@/l
 import { consumeRateLimit, resetRateLimit } from "@/lib/auth/rate-limit";
 import { logAuditDirect } from "@/lib/audit/audit-logger";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "127.0.0.1";

@@ -4,6 +4,8 @@ import { prisma } from "@/lib/db/prisma";
 import { Role } from "@prisma/client";
 import { parseMarksCsv, parseMarksXlsx } from "@/lib/import/marks-importer";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getCurrentSession();

@@ -5,6 +5,8 @@ import { Role, ExamStatus } from "@prisma/client";
 import { assertFaculty } from "@/lib/auth/rbac";
 import { ExaminationService } from "@/services/examination.service";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getCurrentSession();
@@ -12,7 +14,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl;
     const examinationSubjectId = searchParams.get("examinationSubjectId");
     const subjectId = searchParams.get("subjectId");
     const sectionId = searchParams.get("sectionId");

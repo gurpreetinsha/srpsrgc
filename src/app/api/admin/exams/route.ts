@@ -4,6 +4,8 @@ import { assertAdmin } from "@/lib/auth/rbac";
 import { prisma } from "@/lib/db/prisma";
 import { ExaminationService } from "@/services/examination.service";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getCurrentSession();
@@ -12,7 +14,7 @@ export async function GET(request: NextRequest) {
     }
     assertAdmin(session.user);
 
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl;
     const examinationId = searchParams.get("id");
 
     if (examinationId) {

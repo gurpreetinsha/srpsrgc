@@ -3,6 +3,8 @@ import { getCurrentSession } from "@/lib/auth/get-session";
 import { assertAdmin } from "@/lib/auth/rbac";
 import { ReportService } from "@/services/report.service";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getCurrentSession();
@@ -11,7 +13,7 @@ export async function GET(request: NextRequest) {
     }
     assertAdmin(session.user);
 
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl;
     const examinationId = searchParams.get("examinationId");
     const format = searchParams.get("format") || "csv";
 

@@ -3,6 +3,8 @@ import { getCurrentSession } from "@/lib/auth/get-session";
 import { Role } from "@prisma/client";
 import { GraduationCap, LogOut, User } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function StudentLayout({
   children,
 }: {

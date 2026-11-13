@@ -3,6 +3,8 @@ import { getCurrentSession } from "@/lib/auth/get-session";
 import { StudentResultService } from "@/services/student-result.service";
 import { assertStudent } from "@/lib/auth/rbac";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   try {
     const session = await getCurrentSession();
@@ -12,7 +14,7 @@ export async function GET(req: NextRequest) {
 
     assertStudent(session.user);
 
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = req.nextUrl;
     const examId = searchParams.get("examId");
 
     if (!examId) {

@@ -3,7 +3,9 @@ import { getCurrentSession } from "@/lib/auth/get-session";
 import { assertAdmin } from "@/lib/auth/rbac";
 import { InstitutionService } from "@/services/institution.service";
 
-export async function GET() {
+export const dynamic = "force-dynamic";
+
+export async function GET(_request: NextRequest) {
   try {
     const session = await getCurrentSession();
     if (!session) {
