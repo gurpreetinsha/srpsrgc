@@ -8,8 +8,740 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// Temporary placeholder model for Phase 0 validation
-model SystemPing {
+// ==============================================================================
+// ENUMS
+// ==============================================================================
+
+enum Role {
+  ADMIN
+  FACULTY
+  STUDENT
+}
+
+enum SubjectType {
+  THEORY
+  PRACTICAL
+  ELECTIVE
+  AUDIT
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  DETAINED
+  WITHDRAWN
+}
+
+enum AssignmentRole {
+  PRIMARY
+  ASSISTANT
+}
+
+enum ExamType {
+  REGULAR
+  SUPPLEMENTARY
+  SPECIAL
+}
+
+enum ExamStatus {
+  UPCOMING
+  IN_PROGRESS
+  MARKS_ENTRY
+  UNDER_REVIEW
+  COMPLETED
+}
+
+enum ExamEnrollmentStatus {
+  ELIGIBLE
+  WITHHELD
+  DETAINED
+  EXEMPT
+}
+
+enum MarkStatus {
+  DRAFT
+  SUBMITTED
+  REJECTED
+  APPROVED
+  WITHHELD
+  INCOMPLETE
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  UNPUBLISHED
+}
+
+enum RoundingMode {
+  HALF_UP
+  TRUNCATE
+}
+
+enum ImportJobType {
+  STUDENTS
+  MARKS
+  FACULTY
+}
+
+enum ImportStatus {
+  PENDING
+  PREVIEW_READY
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum NotificationCategory {
+  RESULT_PUBLISHED
+  MARKS_SUBMISSION
+  MARKS_REJECTION
+  ANNOUNCEMENT
+  ACCOUNT
+}
+
+// ==============================================================================
+// IDENTITY & SECURITY MODELS
+// ==============================================================================
+
+model User {
+  id           String    @id @default(uuid())
+  identifier   String    @unique // Roll No, Faculty ID, or Admin Email
+  email        String?   @unique
+  passwordHash String
+  role         Role      @default(STUDENT)
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  sessions         Session[]
+  resetTokens      PasswordResetToken[]
+  auditLogs        AuditLog[]
+  studentProfile   Student?
+  facultyProfile   Faculty?
+  notifications    Notification[]
+  publishedResults ResultPublication[]        @relation("PublishedBy")
+  versionSnapshots ResultPublicationVersion[] @relation("VersionPublishedBy")
+  correctionAudits MarkCorrectionAudit[]      @relation("ChangedBy")
+  submittedMarks   Mark[]                     @relation("MarkSubmittedBy")
+  approvedMarks    Mark[]                     @relation("MarkApprovedBy")
+  importJobs       ImportJob[]                @relation("UploadedBy")
+  exportJobs       ExportJob[]                @relation("RequestedBy")
+
+  @@index([identifier])
+  @@index([role, isActive])
+}
+
+model Session {
   id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
   createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tokenHash])
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tokenHash])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  oldValues  Json?
+  newValues  Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model RateLimitRecord {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  points    Int      @default(0)
+  expireAt  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([key, expireAt])
+}
+
+// ==============================================================================
+// INSTITUTION & SETTINGS MODELS
+// ==============================================================================
+
+model InstitutionSetting {
+  id                     String   @id @default(uuid())
+  institutionName        String   @default("Shri Ram Group of Colleges")
+  institutionCode        String   @default("SRGC")
+  tagline                String?
+  logoUrl                String?
+  address                String?
+  contactEmail           String?
+  contactPhone           String?
+  affiliation            String?
+  currentAcademicSession String?
+  allowStudentRankView   Boolean  @default(false)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
+
+model SystemSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==============================================================================
+// ACADEMIC STRUCTURE MODELS
+// ==============================================================================
+
+model Department {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  programs Program[]
+  subjects Subject[]
+  faculty  Faculty[]
+}
+
+model Program {
+  id             String   @id @default(uuid())
+  code           String   @unique
+  name           String
+  departmentId   String
+  durationYears  Int
+  totalSemesters Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  department     Department        @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  batches        Batch[]
+  semesters      Semester[]
+  students       Student[]
+  examinations   Examination[]
+  subjectCredits SubjectCredit[]
+
+  @@index([departmentId])
+}
+
+model AcademicYear {
+  id        String   @id @default(uuid())
+  name      String   @unique // e.g. "2024-2025"
+  startDate DateTime
+  endDate   DateTime
+  isCurrent Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  batches            Batch[]
+  studentEnrollments StudentEnrollment[]
+  facultyAssignments FacultyAssignment[]
+  examinations       Examination[]
+}
+
+model Batch {
+  id             String   @id @default(uuid())
+  name           String   // e.g. "2023-2027"
+  programId      String
+  academicYearId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  program            Program             @relation(fields: [programId], references: [id], onDelete: Restrict)
+  academicYear       AcademicYear        @relation(fields: [academicYearId], references: [id], onDelete: Restrict)
+  sections           Section[]
+  students           Student[]
+  studentEnrollments StudentEnrollment[]
+
+  @@unique([programId, name])
+  @@index([programId])
+}
+
+model Semester {
+  id             String   @id @default(uuid())
+  programId      String
+  semesterNumber Int      // 1 to 8
+  title          String   // e.g. "Semester 1"
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  program            Program             @relation(fields: [programId], references: [id], onDelete: Restrict)
+  subjectCredits     SubjectCredit[]
+  studentEnrollments StudentEnrollment[]
+  facultyAssignments FacultyAssignment[]
+  examinations       Examination[]
+  currentStudents    Student[]           @relation("CurrentSemester")
+
+  @@unique([programId, semesterNumber])
+  @@index([programId])
+}
+
+model Section {
+  id        String   @id @default(uuid())
+  batchId   String
+  name      String   // e.g. "Section A"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  batch              Batch               @relation(fields: [batchId], references: [id], onDelete: Restrict)
+  studentEnrollments StudentEnrollment[]
+  facultyAssignments FacultyAssignment[]
+
+  @@unique([batchId, name])
+  @@index([batchId])
+}
+
+model Subject {
+  id           String      @id @default(uuid())
+  code         String      @unique
+  name         String
+  type         SubjectType @default(THEORY)
+  departmentId String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  department          Department           @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  subjectCredits      SubjectCredit[]
+  facultyAssignments  FacultyAssignment[]
+  examinationSubjects ExaminationSubject[]
+
+  @@index([departmentId])
+}
+
+model SubjectCredit {
+  id               String   @id @default(uuid())
+  subjectId        String
+  programId        String
+  semesterId       String
+  credits          Float
+  maxInternalMarks Float
+  minInternalMarks Float
+  maxExternalMarks Float
+  minExternalMarks Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  subject  Subject  @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  program  Program  @relation(fields: [programId], references: [id], onDelete: Restrict)
+  semester Semester @relation(fields: [semesterId], references: [id], onDelete: Restrict)
+
+  @@unique([subjectId, programId, semesterId])
+  @@index([programId, semesterId])
+}
+
+// ==============================================================================
+// PEOPLE & ENROLLMENT MODELS
+// ==============================================================================
+
+model Faculty {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  facultyCode  String   @unique
+  firstName    String
+  lastName     String
+  designation  String
+  departmentId String
+  contactEmail String
+  contactPhone String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department  Department          @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  assignments FacultyAssignment[]
+
+  @@index([departmentId])
+  @@index([facultyCode])
+}
+
+model Student {
+  id                String    @id @default(uuid())
+  userId            String    @unique
+  rollNumber        String    @unique
+  regNumber         String    @unique
+  firstName         String
+  lastName          String
+  gender            String?
+  dob               DateTime?
+  contactEmail      String
+  contactPhone      String?
+  programId         String
+  batchId           String
+  currentSemesterId String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  user            User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  program         Program                 @relation(fields: [programId], references: [id], onDelete: Restrict)
+  batch           Batch                   @relation(fields: [batchId], references: [id], onDelete: Restrict)
+  currentSemester Semester?               @relation("CurrentSemester", fields: [currentSemesterId], references: [id], onDelete: SetNull)
+  enrollments     StudentEnrollment[]
+  examEnrollments ExaminationEnrollment[]
+
+  @@index([programId, batchId])
+  @@index([rollNumber])
+  @@index([regNumber])
+}
+
+model StudentEnrollment {
+  id               String           @id @default(uuid())
+  studentId        String
+  batchId          String
+  semesterId       String
+  sectionId        String
+  academicYearId   String
+  enrollmentStatus EnrollmentStatus @default(ACTIVE)
+  enrolledAt       DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  student      Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  batch        Batch        @relation(fields: [batchId], references: [id], onDelete: Restrict)
+  semester     Semester     @relation(fields: [semesterId], references: [id], onDelete: Restrict)
+  section      Section      @relation(fields: [sectionId], references: [id], onDelete: Restrict)
+  academicYear AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Restrict)
+
+  @@unique([studentId, semesterId, academicYearId])
+  @@index([sectionId, semesterId])
+  @@index([batchId, semesterId])
+}
+
+model FacultyAssignment {
+  id             String         @id @default(uuid())
+  facultyId      String
+  subjectId      String
+  sectionId      String
+  semesterId     String
+  academicYearId String
+  role           AssignmentRole @default(PRIMARY)
+  assignedAt     DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  faculty      Faculty      @relation(fields: [facultyId], references: [id], onDelete: Cascade)
+  subject      Subject      @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  section      Section      @relation(fields: [sectionId], references: [id], onDelete: Restrict)
+  semester     Semester     @relation(fields: [semesterId], references: [id], onDelete: Restrict)
+  academicYear AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Restrict)
+
+  @@unique([facultyId, subjectId, sectionId, semesterId, academicYearId])
+  @@index([subjectId, sectionId, semesterId])
+}
+
+// ==============================================================================
+// EXAMINATION & MARKS LIFECYCLE MODELS
+// ==============================================================================
+
+model Examination {
+  id             String     @id @default(uuid())
+  title          String
+  code           String     @unique
+  academicYearId String
+  semesterId     String
+  programId      String
+  examType       ExamType   @default(REGULAR)
+  status         ExamStatus @default(UPCOMING)
+  startDate      DateTime
+  endDate        DateTime
+  version        Int        @default(1)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  academicYear AcademicYear            @relation(fields: [academicYearId], references: [id], onDelete: Restrict)
+  semester     Semester                @relation(fields: [semesterId], references: [id], onDelete: Restrict)
+  program      Program                 @relation(fields: [programId], references: [id], onDelete: Restrict)
+  examSubjects ExaminationSubject[]
+  enrollments  ExaminationEnrollment[]
+  publication  ResultPublication?
+
+  @@index([programId, semesterId, academicYearId])
+}
+
+model ExaminationSubject {
+  id               String   @id @default(uuid())
+  examinationId    String
+  subjectId        String
+  maxInternalMarks Float
+  minInternalMarks Float
+  maxExternalMarks Float
+  minExternalMarks Float
+  maxTotalMarks    Float
+  minTotalMarks    Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  examination Examination @relation(fields: [examinationId], references: [id], onDelete: Cascade)
+  subject     Subject     @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  marks       Mark[]
+
+  @@unique([examinationId, subjectId])
+  @@index([examinationId])
+}
+
+model ExaminationEnrollment {
+  id                  String               @id @default(uuid())
+  examinationId       String
+  studentId           String
+  rollNumberSnapshot  String
+  regNumberSnapshot   String
+  studentNameSnapshot String
+  programSnapshot     String
+  batchSnapshot       String
+  semesterSnapshot    String
+  sectionSnapshot     String
+  status              ExamEnrollmentStatus @default(ELIGIBLE)
+  remarks             String?
+  createdAt           DateTime             @default(now())
+
+  examination Examination @relation(fields: [examinationId], references: [id], onDelete: Cascade)
+  student     Student     @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  marks       Mark[]
+
+  @@unique([examinationId, studentId])
+  @@index([examinationId, status])
+  @@index([studentId])
+}
+
+model Mark {
+  id                      String     @id @default(uuid())
+  examinationEnrollmentId String
+  examinationSubjectId    String
+  internalMarks           Float?
+  externalMarks           Float?
+  totalMarks              Float?
+  grade                   String?
+  gradePoint              Float?
+  status                  MarkStatus @default(DRAFT)
+  submittedById           String?
+  submittedAt             DateTime?
+  approvedById            String?
+  approvedAt              DateTime?
+  rejectionReason         String?
+  version                 Int        @default(1)
+  createdAt               DateTime   @default(now())
+  updatedAt               DateTime   @updatedAt
+
+  examinationEnrollment ExaminationEnrollment @relation(fields: [examinationEnrollmentId], references: [id], onDelete: Cascade)
+  examinationSubject    ExaminationSubject    @relation(fields: [examinationSubjectId], references: [id], onDelete: Cascade)
+  submittedBy           User?                 @relation("MarkSubmittedBy", fields: [submittedById], references: [id], onDelete: SetNull)
+  approvedBy            User?                 @relation("MarkApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  corrections           MarkCorrectionAudit[]
+
+  @@unique([examinationEnrollmentId, examinationSubjectId])
+  @@index([examinationSubjectId, status])
+}
+
+model MarkCorrectionAudit {
+  id               String   @id @default(uuid())
+  markId           String
+  previousInternal Float?
+  newInternal      Float?
+  previousExternal Float?
+  newExternal      Float?
+  reason           String
+  changedById      String
+  createdAt        DateTime @default(now())
+
+  mark      Mark @relation(fields: [markId], references: [id], onDelete: Cascade)
+  changedBy User @relation("ChangedBy", fields: [changedById], references: [id], onDelete: Restrict)
+
+  @@index([markId])
+  @@index([changedById])
+}
+
+model ResultPublication {
+  id              String            @id @default(uuid())
+  examinationId   String            @unique
+  status          PublicationStatus @default(DRAFT)
+  publishedAt     DateTime?
+  publishedById   String?
+  unpublishReason String?
+  version         Int               @default(1)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  examination Examination                @relation(fields: [examinationId], references: [id], onDelete: Cascade)
+  publishedBy User?                      @relation("PublishedBy", fields: [publishedById], references: [id], onDelete: SetNull)
+  versions    ResultPublicationVersion[]
+
+  @@index([status])
+}
+
+model ResultPublicationVersion {
+  id                  String   @id @default(uuid())
+  resultPublicationId String
+  versionNumber       Int
+  snapshotJson        Json
+  publishedById       String
+  publishedAt         DateTime @default(now())
+  notes               String?
+
+  resultPublication ResultPublication @relation(fields: [resultPublicationId], references: [id], onDelete: Cascade)
+  publishedBy       User              @relation("VersionPublishedBy", fields: [publishedById], references: [id], onDelete: Restrict)
+
+  @@unique([resultPublicationId, versionNumber])
+  @@index([resultPublicationId])
+}
+
+// ==============================================================================
+// GRADING & CALCULATION POLICY MODELS
+// ==============================================================================
+
+model GradingScale {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  rules               GradeRule[]
+  calculationPolicies ResultCalculationPolicy[]
+}
+
+model GradeRule {
+  id             String   @id @default(uuid())
+  gradingScaleId String
+  grade          String
+  gradePoint     Float
+  minPercentage  Float
+  maxPercentage  Float
+  isFail         Boolean  @default(false)
+  description    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  gradingScale GradingScale @relation(fields: [gradingScaleId], references: [id], onDelete: Cascade)
+
+  @@unique([gradingScaleId, grade])
+  @@index([gradingScaleId])
+}
+
+model PassingCriteria {
+  id                     String   @id @default(uuid())
+  name                   String   @unique
+  minInternalPercentage  Float    @default(40)
+  minExternalPercentage  Float    @default(40)
+  minAggregatePercentage Float    @default(40)
+  allowGraceMarks        Boolean  @default(false)
+  maxGraceMarks          Int      @default(0)
+  maxGraceSubjects       Int      @default(0)
+  isDefault              Boolean  @default(false)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  calculationPolicies ResultCalculationPolicy[]
+}
+
+model ResultCalculationPolicy {
+  id                     String       @id @default(uuid())
+  name                   String       @unique
+  gradingScaleId         String
+  passingCriteriaId      String
+  roundingMode           RoundingMode @default(HALF_UP)
+  roundingDecimals       Int          @default(2)
+  percentageMultiplier   Float        @default(9.5)
+  allowRankingWithheld   Boolean      @default(false)
+  allowRankingIncomplete Boolean      @default(false)
+  isDefault              Boolean      @default(false)
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+
+  gradingScale    GradingScale    @relation(fields: [gradingScaleId], references: [id], onDelete: Restrict)
+  passingCriteria PassingCriteria @relation(fields: [passingCriteriaId], references: [id], onDelete: Restrict)
+}
+
+// ==============================================================================
+// OPERATIONS & ASYNC UTILITY MODELS
+// ==============================================================================
+
+model ImportJob {
+  id            String        @id @default(uuid())
+  jobType       ImportJobType
+  fileName      String
+  uploadedById  String
+  status        ImportStatus  @default(PENDING)
+  totalRows     Int           @default(0)
+  processedRows Int           @default(0)
+  errorCount    Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  uploadedBy User          @relation("UploadedBy", fields: [uploadedById], references: [id], onDelete: Restrict)
+  errors     ImportError[]
+
+  @@index([uploadedById])
+  @@index([status])
+}
+
+model ImportError {
+  id           String   @id @default(uuid())
+  importJobId  String
+  rowNumber    Int
+  rawContent   String
+  errorMessage String
+  createdAt    DateTime @default(now())
+
+  importJob ImportJob @relation(fields: [importJobId], references: [id], onDelete: Cascade)
+
+  @@index([importJobId])
+}
+
+model ExportJob {
+  id            String   @id @default(uuid())
+  exportType    String
+  requestedById String
+  status        String   @default("COMPLETED")
+  fileName      String
+  fileKey       String?
+  createdAt     DateTime @default(now())
+
+  requestedBy User @relation("RequestedBy", fields: [requestedById], references: [id], onDelete: Restrict)
+
+  @@index([requestedById])
+}
+
+model Notification {
+  id        String               @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  category  NotificationCategory @default(ANNOUNCEMENT)
+  isRead    Boolean              @default(false)
+  createdAt DateTime             @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
 }

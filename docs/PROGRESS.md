@@ -16,10 +16,10 @@
 
 | Phase | Description | Status | Gate Commands Run | Commit Hash |
 | :--- | :--- | :--- | :--- | :--- |
-| **Step 1** | Foundation Documentation & Artifacts | **IMPLEMENTATION COMPLETE** | Docs created, Artifacts written | Pending |
-| **Phase 0** | Foundation: Scaffold, Tooling, CI, Docker Compose, Env | **IMPLEMENTATION COMPLETE** | prisma validate, tsc, lint, test, build | Pending |
-| **Phase 1** | Schema + Initial Migration against clean Postgres | NOT STARTED | Pending | Pending |
-| **Phase 2** | Calculation Engine + Unit Test Suite (Pure Module) | **IMPLEMENTATION COMPLETE** | 21 Vitest unit tests passing | Pending |
+| **Step 1** | Foundation Documentation & Artifacts | **IMPLEMENTATION COMPLETE** | Docs created, Artifacts written | `9b0cb72` |
+| **Phase 0** | Foundation: Scaffold, Tooling, CI, Docker Compose, Env | **IMPLEMENTATION COMPLETE** | prisma validate, tsc, lint, test, build | `9b0cb72` |
+| **Phase 1** | Schema + Initial Migration against clean Postgres | **IMPLEMENTATION COMPLETE** | prisma validate, prisma generate, migration SQL | `9b0cb72` |
+| **Phase 2** | Calculation Engine + Unit Test Suite (Pure Module) | **IMPLEMENTATION COMPLETE** | 21 Vitest unit tests passing | `9b0cb72` |
 | **Phase 3** | Auth, Sessions, RBAC, Rate Limiting, Audit, Admin CLI | NOT STARTED | Pending | Pending |
 | **Phase 4** | Institution Settings + Academic Structure + Onboarding | NOT STARTED | Pending | Pending |
 | **Phase 5** | People Management, Enrollments, Assignments, Imports | NOT STARTED | Pending | Pending |
@@ -35,7 +35,11 @@
 
 | Gate Timestamp | Command Executed | Exit Code | Summary Output |
 | :--- | :--- | :--- | :--- |
-| 2026-11-13 08:42 | `pnpm prisma validate` | 0 | The schema at prisma\schema.prisma is valid |
+| 2026-11-13 08:48 | `pnpm prisma validate` (Phase 1) | 0 | Full schema validated with all 34 models |
+| 2026-11-13 08:48 | `pnpm prisma generate` (Phase 1) | 0 | Prisma Client v6.4.1 generated successfully |
+| 2026-11-13 08:48 | `pnpm prisma migrate diff` (Phase 1) | 0 | 34KB migration SQL written to 20261113000000_init |
+| 2026-11-13 08:49 | `pnpm exec tsc --noEmit` (Phase 1) | 0 | Strict typecheck clean |
+| 2026-11-13 08:50 | `pnpm build` (Phase 1) | 0 | Next.js production build succeeded |
 | 2026-11-13 08:42 | `pnpm exec tsc --noEmit` | 0 | Clean compilation with strict mode |
 | 2026-11-13 08:44 | `pnpm lint` | 0 | No ESLint warnings or errors |
 | 2026-11-13 08:43 | `pnpm test` | 0 | 21 unit tests passed in 32ms |
