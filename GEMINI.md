@@ -14,7 +14,7 @@ Build a real, production-oriented Student Result Management System for Shri Ram 
 - Production DB starts empty. No seed script. No `prisma db seed` configured. No demo users, faculty, students, exams, or results. No default or hardcoded credentials.
 - Test fixtures are allowed ONLY as factory functions that run inside automated tests against an ephemeral local/CI Postgres, and are never imported by app code.
 - No localStorage or static JSON as application data. No simulated API responses.
-- Never invent SRGC's grading policy, accreditation, affiliations, rankings, seals, or signatures. Unknown policy becomes a configurable setting and an entry in docs/OPEN_POLICY_QUESTIONS.md. Branding (name, logo, address, contacts, session) is configurable by the admin.
+- Never invent SRGC's grading polici, accreditation, affiliations, rankings, seals, or signatures. Unknown policy becomes a configurable setting and an entry in docs/OPEN_POLICY_QUESTIONS.md. Branding (name, logo, address, contacts, session) is configurable by the admin.
 
 ## Technical decisions (already made, do not re-litigate)
 - Next.js App Router + React + TypeScript (strict) + Tailwind + shadcn/ui + lucide-react + Recharts. Pin exact versions in the lockfile. Use pnpm.
