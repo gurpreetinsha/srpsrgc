@@ -93,7 +93,7 @@ export default async function FacultyDashboardPage() {
               <div className="mt-5 border-t border-slate-100 pt-4">
                 <Link
                   href={`/faculty/marks?subjectId=${asgn.subjectId}&sectionId=${asgn.sectionId}&semesterId=${asgn.semesterId}`}
-                  className="flex items-center justify-between rounded-lg bg-[#0f2342] px-3.5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#0b1727]"
+                  className="flex items-center justify-between rounded-lg bg-[#831825] px-3.5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#6d1521]"
                 >
                   <span>Enter and import marks</span>
                   <ArrowRight className="h-3.5 w-3.5 text-amber-400" />

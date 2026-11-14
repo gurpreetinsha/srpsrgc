@@ -163,7 +163,7 @@ export default function PeopleManagementPage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
+    <div className="space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -201,7 +201,7 @@ export default function PeopleManagementPage() {
             }}
             className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-medium transition shrink-0 ${
               activeTab === "students"
-                ? "bg-[#0f2342] text-white shadow-2xs"
+                ? "bg-[#831825] text-white shadow-2xs"
                 : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900"
             }`}
           >
@@ -216,7 +216,7 @@ export default function PeopleManagementPage() {
             }}
             className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-medium transition shrink-0 ${
               activeTab === "faculty"
-                ? "bg-[#0f2342] text-white shadow-2xs"
+                ? "bg-[#831825] text-white shadow-2xs"
                 : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900"
             }`}
           >
@@ -242,7 +242,7 @@ export default function PeopleManagementPage() {
 
           <button
             onClick={() => setShowModal(activeTab === "students" ? "student" : "faculty")}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3.5 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3.5 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
           >
             <UserPlus className="h-3.5 w-3.5 text-amber-400" />
             <span>{activeTab === "students" ? "Add Student" : "Add Faculty"}</span>
@@ -489,7 +489,7 @@ export default function PeopleManagementPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Student Account"}
                   </button>
@@ -590,7 +590,7 @@ export default function PeopleManagementPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Faculty Account"}
                   </button>

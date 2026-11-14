@@ -37,27 +37,36 @@ const config: Config = {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
+        // Official SRGC Collegiate Reddish Palette
         primary: {
-          DEFAULT: "#0f2342", // Stately Collegiate Navy
-          50: "#f1f5f9",
-          100: "#e2e8f0",
-          200: "#cbd5e1",
-          300: "#94a3b8",
-          400: "#64748b",
-          500: "#334155",
-          600: "#1e293b",
-          700: "#162846",
-          800: "#0f2342",
-          900: "#0b1727",
-          950: "#060e19",
+          DEFAULT: "#831825", // Rich SRGC Collegiate Red / Deep Crimson
+          50: "#fdf3f4",
+          100: "#fbe6e8",
+          200: "#f7d0d4",
+          300: "#f0abb3",
+          400: "#e47a86",
+          500: "#d34b5a",
+          600: "#ba2a3b",
+          700: "#9c1d2d",
+          800: "#831825", // Main Brand Red
+          900: "#6d1521",
+          950: "#3d070e",
           foreground: "#ffffff",
         },
+        // Warm collegiate dark tone (replaces all blueish/navy dark chrome)
+        branddark: {
+          DEFAULT: "#180d10",
+          50: "#2d161c",
+          100: "#221115",
+          200: "#180d10",
+          border: "#331a20",
+        },
         secondary: {
-          DEFAULT: "#f8fafc",
-          foreground: "#0f172a",
+          DEFAULT: "#f7f7f8",
+          foreground: "#18181b",
         },
         accent: {
-          DEFAULT: "#b45309", // Restrained Collegiate Amber/Gold
+          DEFAULT: "#b45309", // Warm Brass / Gold Accent
           50: "#fffbeb",
           100: "#fef3c7",
           200: "#fde68a",
@@ -69,23 +78,6 @@ const config: Config = {
           800: "#92400e",
           900: "#78350f",
           foreground: "#ffffff",
-        },
-        navy: {
-          50: "#f1f5f9",
-          100: "#e2e8f0",
-          200: "#cbd5e1",
-          700: "#1a2c47",
-          800: "#112036",
-          900: "#0b1727",
-          950: "#060e19",
-        },
-        gold: {
-          50: "#fffbeb",
-          100: "#fef3c7",
-          500: "#f59e0b",
-          600: "#d97706",
-          700: "#b45309",
-          800: "#92400e",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

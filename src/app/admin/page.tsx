@@ -43,7 +43,7 @@ export default async function AdminDashboardPage() {
   ]);
 
   return (
-    <div className="space-y-6 sm:space-y-8 text-slate-900">
+    <div className="space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Overview Banner */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
@@ -120,15 +120,15 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Guided Onboarding Wizard Card */}
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
-        <div className="border-b border-slate-200 bg-slate-900 p-5 sm:p-6 text-white">
+      <div className="overflow-hidden rounded-xl border border-stone-200 bg-white shadow-2xs">
+        <div className="border-b border-[#2d161c] bg-[#180d10] p-4 sm:p-6 text-white">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-amber-400" />
                 <h2 className="text-sm sm:text-base font-semibold">Institutional setup and onboarding</h2>
               </div>
-              <p className="mt-1 text-xs text-slate-300">
+              <p className="mt-1 text-xs text-stone-300">
                 Foundational academic milestones required before result evaluation and publication.
               </p>
             </div>
@@ -136,12 +136,12 @@ export default async function AdminDashboardPage() {
               <span className="text-xl font-semibold text-white tabular-nums">
                 {onboarding.completionPercentage}%
               </span>
-              <span className="text-[11px] text-slate-400 block">Complete</span>
+              <span className="text-[11px] text-stone-400 block">Complete</span>
             </div>
           </div>
 
           {/* Progress bar */}
-          <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-[#2a141a]">
             <div
               className="h-full bg-amber-400 transition-all duration-300"
               style={{ width: `${onboarding.completionPercentage}%` }}

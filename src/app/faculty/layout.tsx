@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentSession } from "@/lib/auth/get-session";
 import { Role } from "@prisma/client";
-import { BookOpen, LogOut, User, LayoutDashboard, Edit3 } from "lucide-react";
+import { LogOut, User, LayoutDashboard, Edit3 } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -22,27 +22,27 @@ export default async function FacultyLayout({
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-[#faf9f8] text-stone-900 w-full max-w-full overflow-x-hidden">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-slate-800 bg-[#0b1727] text-white shadow-xs">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 border border-slate-700 text-amber-400">
-              <BookOpen className="h-4 w-4" />
+      <header className="sticky top-0 z-30 border-b border-[#2d161c] bg-[#180d10] text-white shadow-xs w-full">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-3.5 sm:px-5 md:px-6 py-2.5">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#831825] text-white font-semibold text-xs shadow-xs">
+              SR
             </div>
-            <div>
-              <div className="text-sm font-semibold tracking-tight text-white leading-tight">
+            <div className="min-w-0 truncate">
+              <div className="text-xs sm:text-sm font-semibold tracking-tight text-white leading-tight truncate">
                 Shri Ram Group of Colleges
               </div>
-              <div className="text-[11px] text-slate-400 leading-tight">
+              <div className="text-[10px] sm:text-[11px] text-stone-400 leading-tight">
                 Faculty Academic Portal
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-300">
-              <User className="h-3.5 w-3.5 text-slate-400" />
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 rounded-md border border-[#3d1e26] bg-[#241318] px-2.5 py-1 text-xs text-stone-300">
+              <User className="h-3.5 w-3.5 text-stone-400" />
               <span className="max-w-[120px] sm:max-w-[180px] truncate tabular-nums font-medium text-white">
                 {session.user.identifier}
               </span>
@@ -51,9 +51,9 @@ export default async function FacultyLayout({
             <form action="/api/auth/logout" method="POST">
               <button
                 type="submit"
-                className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:bg-slate-700 hover:text-white"
+                className="flex items-center gap-1.5 rounded-md border border-[#3d1e26] bg-[#241318] px-2.5 sm:px-3 py-1 text-xs font-medium text-stone-200 transition hover:bg-[#331b22]"
               >
-                <LogOut className="h-3.5 w-3.5 text-slate-400" />
+                <LogOut className="h-3.5 w-3.5 text-stone-400" />
                 <span className="hidden sm:inline">Sign out</span>
               </button>
             </form>
@@ -62,27 +62,27 @@ export default async function FacultyLayout({
       </header>
 
       {/* Sub Navigation Bar */}
-      <div className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl gap-6 px-4 overflow-x-auto whitespace-nowrap scrollbar-none">
+      <div className="border-b border-stone-200 bg-white">
+        <div className="mx-auto flex max-w-7xl gap-6 px-3.5 sm:px-5 md:px-6 overflow-x-auto whitespace-nowrap scrollbar-none">
           <Link
             href="/faculty"
-            className="flex items-center gap-2 border-b-2 border-transparent py-3 text-xs font-medium text-slate-600 transition hover:border-slate-800 hover:text-slate-900"
+            className="flex items-center gap-2 border-b-2 border-transparent py-2.5 text-xs font-medium text-stone-600 transition hover:border-[#831825] hover:text-[#831825]"
           >
-            <LayoutDashboard className="h-4 w-4 text-slate-400" />
+            <LayoutDashboard className="h-4 w-4 text-stone-400" />
             <span>Assigned Classes</span>
           </Link>
           <Link
             href="/faculty/marks"
-            className="flex items-center gap-2 border-b-2 border-transparent py-3 text-xs font-medium text-slate-600 transition hover:border-slate-800 hover:text-slate-900"
+            className="flex items-center gap-2 border-b-2 border-transparent py-2.5 text-xs font-medium text-stone-600 transition hover:border-[#831825] hover:text-[#831825]"
           >
-            <Edit3 className="h-4 w-4 text-slate-400" />
-            <span>Marks Entry and Submission</span>
+            <Edit3 className="h-4 w-4 text-stone-400" />
+            <span>Marks Entry & Submission</span>
           </Link>
         </div>
       </div>
 
       {/* Main Content */}
-      <main className="mx-auto max-w-6xl px-3 sm:px-4 py-4 sm:py-8">
+      <main className="mx-auto max-w-7xl px-3.5 sm:px-5 md:px-6 py-4 sm:py-6 w-full min-w-0">
         {children}
       </main>
     </div>

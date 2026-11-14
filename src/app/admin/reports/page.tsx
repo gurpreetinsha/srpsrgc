@@ -75,7 +75,7 @@ export default function ReportsAdminPage() {
   }, [selectedExamId]);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
+    <div className="space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Title */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -152,7 +152,7 @@ export default function ReportsAdminPage() {
 
               <a
                 href={`/api/admin/reports/export?examinationId=${report.examinationId}&format=xlsx`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3.5 py-2 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3.5 py-2 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
               >
                 <FileSpreadsheet className="h-4 w-4 text-amber-400" />
                 <span>Export Excel (.xlsx)</span>

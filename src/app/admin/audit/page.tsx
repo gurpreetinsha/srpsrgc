@@ -122,7 +122,7 @@ export default function AuditLogsAdminPage() {
 
         <button
           type="submit"
-          className="rounded-lg bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+          className="rounded-lg bg-[#831825] px-4 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
         >
           Apply Filter
         </button>

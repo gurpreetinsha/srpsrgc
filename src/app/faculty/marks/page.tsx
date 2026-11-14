@@ -574,7 +574,7 @@ function MarksEntryContent() {
               type="button"
               onClick={() => saveMarks(false)}
               disabled={isApproved}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0f2342] px-4 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#0b1727] disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#831825] px-4 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#6d1521] disabled:opacity-50"
             >
               <Send className="h-4 w-4 text-amber-400" />
               <span>Submit for administrative review</span>
@@ -604,7 +604,7 @@ function MarksEntryContent() {
                   type="file"
                   accept=".csv, .xlsx, .xls"
                   onChange={(e) => setImportFile(e.target.files?.[0] || null)}
-                  className="text-xs text-slate-600 file:mr-3 file:rounded-md file:border-0 file:bg-[#0f2342] file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-[#0b1727]"
+                  className="text-xs text-slate-600 file:mr-3 file:rounded-md file:border-0 file:bg-[#831825] file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-[#6d1521]"
                 />
               </div>
 
@@ -630,7 +630,7 @@ function MarksEntryContent() {
                 <button
                   type="submit"
                   disabled={!importFile || importing}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-4 py-2 text-xs font-medium text-white hover:bg-[#0b1727] disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-4 py-2 text-xs font-medium text-white hover:bg-[#6d1521] disabled:opacity-50"
                 >
                   <Upload className="h-3.5 w-3.5 text-amber-400" />
                   <span>{importing ? "Processing..." : "Upload and validate"}</span>

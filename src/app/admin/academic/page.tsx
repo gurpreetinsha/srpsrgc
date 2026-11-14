@@ -86,7 +86,7 @@ export default function AcademicStructurePage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
+    <div className="space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -119,7 +119,7 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("departments")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "departments"
-              ? "bg-[#0f2342] text-white shadow-2xs"
+              ? "bg-[#831825] text-white shadow-2xs"
               : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
@@ -131,7 +131,7 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("programs")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "programs"
-              ? "bg-[#0f2342] text-white shadow-2xs"
+              ? "bg-[#831825] text-white shadow-2xs"
               : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
@@ -143,7 +143,7 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("years")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "years"
-              ? "bg-[#0f2342] text-white shadow-2xs"
+              ? "bg-[#831825] text-white shadow-2xs"
               : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
@@ -155,7 +155,7 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("batches")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "batches"
-              ? "bg-[#0f2342] text-white shadow-2xs"
+              ? "bg-[#831825] text-white shadow-2xs"
               : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
@@ -167,7 +167,7 @@ export default function AcademicStructurePage() {
           onClick={() => setActiveTab("subjects")}
           className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition shrink-0 ${
             activeTab === "subjects"
-              ? "bg-[#0f2342] text-white shadow-2xs"
+              ? "bg-[#831825] text-white shadow-2xs"
               : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           }`}
         >
@@ -190,7 +190,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Academic Departments</h3>
                 <button
                   onClick={() => setShowModal("department")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Department</span>
@@ -238,7 +238,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Degree Programs & Courses</h3>
                 <button
                   onClick={() => setShowModal("program")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Program</span>
@@ -288,7 +288,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Academic Calendar Years</h3>
                 <button
                   onClick={() => setShowModal("academicYear")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Academic Year</span>
@@ -346,7 +346,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Student Cohort Batches</h3>
                 <button
                   onClick={() => setShowModal("batch")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Batch</span>
@@ -394,7 +394,7 @@ export default function AcademicStructurePage() {
                 <h3 className="text-sm font-bold text-slate-800">Course Subjects Directory</h3>
                 <button
                   onClick={() => setShowModal("subject")}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f2342] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727]"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#831825] px-3 py-1.5 text-xs font-medium text-white shadow-2xs hover:bg-[#6d1521]"
                 >
                   <Plus className="h-3.5 w-3.5 text-white" />
                   <span>Add Subject</span>
@@ -516,7 +516,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Department"}
                   </button>
@@ -596,7 +596,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Program"}
                   </button>
@@ -666,7 +666,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Year"}
                   </button>
@@ -737,7 +737,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Batch"}
                   </button>
@@ -815,7 +815,7 @@ export default function AcademicStructurePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                    className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                   >
                     {submitting ? "Saving..." : "Create Subject"}
                   </button>

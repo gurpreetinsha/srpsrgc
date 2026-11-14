@@ -86,7 +86,7 @@ export default async function StudentDashboardPage() {
                       href={`/api/student/result-card?examId=${item.examinationId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg bg-[#0f2342] px-3.5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#0b1727]"
+                      className="inline-flex items-center gap-2 rounded-lg bg-[#831825] px-3.5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#6d1521]"
                     >
                       <Download className="h-3.5 w-3.5 text-amber-400" />
                       <span>Download official PDF card</span>

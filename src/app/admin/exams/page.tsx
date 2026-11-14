@@ -341,56 +341,56 @@ export default function ExaminationsAdminPage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 text-slate-900">
+    <div className="space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Title */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-stone-950">
             Examinations and Result Publication
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-stone-500">
             Orchestrate examination sessions, lock student rosters, moderate faculty marks, and publish official results.
           </p>
         </div>
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#0f2342] px-4 py-2 text-xs font-medium text-white shadow-2xs hover:bg-[#0b1727] self-start sm:self-auto"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#831825] px-4 py-2 text-xs font-medium text-white shadow-xs hover:bg-[#6d1521] self-start sm:self-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#831825]"
         >
-          <Plus className="h-4 w-4 text-amber-400" />
+          <Plus className="h-4 w-4 text-amber-300" />
           <span>New Examination Session</span>
         </button>
       </div>
 
       {/* Alerts */}
       {error && (
-        <div className="flex items-center gap-2 rounded-lg bg-red-50 border border-red-200 p-4 text-xs text-red-800">
+        <div className="flex items-center gap-2 rounded-lg bg-red-50 border border-red-200 p-3 sm:p-4 text-xs text-red-800">
           <AlertCircle className="h-5 w-5 shrink-0 text-red-600" />
           <span>{error}</span>
         </div>
       )}
       {success && (
-        <div className="flex items-center gap-2 rounded-lg bg-green-50 border border-green-200 p-4 text-xs text-green-800">
-          <CheckCircle2 className="h-5 w-5 shrink-0 text-green-600" />
+        <div className="flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 p-3 sm:p-4 text-xs text-emerald-800">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
           <span>{success}</span>
         </div>
       )}
 
       {/* Main Grid: Exams List (Left) & Selected Exam Detail (Right) */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-12 items-start">
         {/* Left Column: Examination Sessions */}
-        <div className="lg:col-span-1 space-y-3">
-          <h2 className="text-xs font-semibold text-slate-500">
+        <div className="lg:col-span-4 xl:col-span-4 space-y-2.5">
+          <h2 className="text-xs font-semibold text-stone-500">
             Examination Sessions ({exams.length})
           </h2>
 
-          <div className="space-y-2 max-h-[700px] overflow-y-auto">
+          <div className="space-y-2 max-h-[650px] overflow-y-auto">
             {loading ? (
               <div className="flex h-32 items-center justify-center">
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-slate-700 border-t-transparent"></div>
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#831825] border-t-transparent"></div>
               </div>
             ) : exams.length === 0 ? (
-              <div className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-xs text-slate-400">
+              <div className="rounded-xl border border-dashed border-stone-300 p-6 text-center text-xs text-stone-400">
                 No examination sessions created yet.
               </div>
             ) : (
@@ -402,14 +402,14 @@ export default function ExaminationsAdminPage() {
                   <div
                     key={exam.id}
                     onClick={() => setSelectedExamId(exam.id)}
-                    className={`cursor-pointer rounded-xl border p-4 transition-colors ${
+                    className={`cursor-pointer rounded-xl border p-3.5 transition-colors ${
                       isSelected
-                        ? "border-slate-800 bg-white shadow-2xs border-l-4 border-l-amber-500"
-                        : "border-slate-200 bg-white hover:border-slate-300"
+                        ? "border-[#831825] bg-[#831825]/5 shadow-xs ring-1 ring-[#831825]/30"
+                        : "border-stone-200 bg-white hover:border-stone-300"
                     }`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-700 tabular-nums">
+                      <span className="rounded-md border border-stone-200 bg-stone-50 px-2 py-0.5 text-[10px] font-medium text-stone-700 tabular-nums">
                         {exam.session}
                       </span>
                       <span
@@ -418,19 +418,19 @@ export default function ExaminationsAdminPage() {
                             ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
                             : exam.status === "UNDER_REVIEW"
                             ? "bg-amber-50 text-amber-800 border border-amber-200"
-                            : "bg-slate-100 text-slate-700"
+                            : "bg-stone-100 text-stone-700"
                         }`}
                       >
                         {isPub ? "PUBLISHED" : exam.status}
                       </span>
                     </div>
 
-                    <h3 className="mt-2 text-sm font-bold text-slate-900">{exam.title}</h3>
-                    <p className="mt-1 text-xs text-slate-500">
+                    <h3 className="mt-2 text-sm font-semibold text-stone-900">{exam.title}</h3>
+                    <p className="mt-1 text-xs text-stone-500 truncate">
                       {exam.program?.name} &bull; {exam.semester?.title}
                     </p>
 
-                    <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-100 pt-2">
+                    <div className="mt-2.5 flex items-center justify-between text-[11px] text-stone-400 border-t border-stone-100 pt-2">
                       <span>Subjects: {exam._count?.examSubjects || 0}</span>
                       <span>Enrolled: {exam._count?.enrollments || 0}</span>
                     </div>
@@ -442,38 +442,38 @@ export default function ExaminationsAdminPage() {
         </div>
 
         {/* Right Column: Selected Exam Operations Console */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-8 xl:col-span-8 min-w-0 max-w-full">
           {!selectedExamDetail ? (
-            <div className="flex h-96 flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-400">
-              <FileCheck2 className="h-12 w-12 text-slate-300 mb-2" />
-              <p className="text-sm font-semibold text-slate-600">Select an examination session</p>
-              <p className="text-xs text-slate-400 max-w-sm mt-1">
+            <div className="flex h-80 flex-col items-center justify-center rounded-xl border border-dashed border-stone-300 bg-white p-6 text-center text-stone-400">
+              <FileCheck2 className="h-10 w-10 text-stone-300 mb-2" />
+              <p className="text-sm font-semibold text-stone-600">Select an examination session</p>
+              <p className="text-xs text-stone-400 max-w-sm mt-1">
                 Choose an exam from the left panel to review marks, freeze student roster snapshots, run pre-publication checks, or publish results.
               </p>
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+            <div className="rounded-xl border border-stone-200 bg-white p-4 sm:p-6 shadow-xs space-y-5 max-w-full overflow-hidden">
               {/* Exam Header */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-800 tabular-nums">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-stone-100 pb-4">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="rounded-md border border-stone-200 bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-800 tabular-nums">
                       {selectedExamDetail.session}
                     </span>
-                    <span className="text-xs font-medium text-slate-500 tabular-nums">
+                    <span className="text-xs font-medium text-stone-500 tabular-nums">
                       Version: {selectedExamDetail.publication?.version || 1}
                     </span>
                   </div>
-                  <h2 className="mt-1 text-xl font-semibold text-slate-900">
+                  <h2 className="mt-1 text-lg sm:text-xl font-semibold text-stone-900 truncate">
                     {selectedExamDetail.title}
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-stone-500 truncate">
                     {selectedExamDetail.program?.name} • {selectedExamDetail.semester?.title} • Academic Year: {selectedExamDetail.academicYear?.name}
                   </p>
                 </div>
 
                 {/* Primary Action Buttons */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 shrink-0">
                   {selectedExamDetail.publication?.status === "PUBLISHED" ? (
                     <button
                       onClick={() => setShowUnpublishModal(true)}
@@ -486,10 +486,10 @@ export default function ExaminationsAdminPage() {
                     <button
                       onClick={handlePublishResults}
                       disabled={!gateCheck?.canPublish || submitting}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-medium text-white shadow-2xs hover:bg-emerald-800 disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-medium text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
                     >
                       <ShieldCheck className="h-4 w-4" />
-                      <span>Publish Results Officially</span>
+                      <span>Publish Results</span>
                     </button>
                   )}
                 </div>
@@ -497,13 +497,13 @@ export default function ExaminationsAdminPage() {
 
               {/* Pre-publication Integrity Checklist */}
               <div
-                className={`rounded-xl border p-4 text-xs ${
+                className={`rounded-xl border p-3.5 sm:p-4 text-xs ${
                   gateCheck?.canPublish
                     ? "border-emerald-200 bg-emerald-50/50 text-emerald-900"
                     : "border-amber-200 bg-amber-50/50 text-amber-900"
                 }`}
               >
-                <div className="flex items-center justify-between font-semibold">
+                <div className="flex items-center justify-between font-semibold flex-wrap gap-1">
                   <span className="flex items-center gap-2">
                     {gateCheck?.canPublish ? (
                       <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -527,21 +527,21 @@ export default function ExaminationsAdminPage() {
               </div>
 
               {/* Roster & Snapshot Controls */}
-              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-stone-200 bg-stone-50 p-3.5 sm:p-4">
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-800">
+                  <h4 className="text-xs font-semibold text-stone-800">
                     Candidate Enrollment Snapshot Roster
                   </h4>
-                  <p className="text-[11px] text-slate-500">
-                    Snapshot frozen: <strong className="text-slate-900 tabular-nums">{selectedExamDetail.enrollments?.length || 0} students</strong>. Results are calculated exclusively against frozen snapshots.
+                  <p className="text-[11px] text-stone-500">
+                    Snapshot frozen: <strong className="text-stone-900 tabular-nums">{selectedExamDetail.enrollments?.length || 0} students</strong>. Results are calculated exclusively against frozen snapshots.
                   </p>
                 </div>
                 <button
                   onClick={handleFreezeRoster}
                   disabled={submitting || selectedExamDetail.publication?.status === "PUBLISHED"}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-2xs hover:bg-slate-50 disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 shadow-2xs hover:bg-stone-50 disabled:opacity-50 self-start sm:self-auto shrink-0"
                 >
-                  <Users className="h-3.5 w-3.5 text-slate-500" />
+                  <Users className="h-3.5 w-3.5 text-stone-500" />
                   <span>Freeze / Sync Snapshot</span>
                 </button>
               </div>
@@ -549,22 +549,22 @@ export default function ExaminationsAdminPage() {
               {/* Exam Subjects & Marks Table */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-slate-900">
+                  <h3 className="text-sm font-semibold text-stone-900">
                     Configured Examination Subjects
                   </h3>
                   <button
                     onClick={() => setShowAddSubjectModal(true)}
                     disabled={selectedExamDetail.publication?.status === "PUBLISHED"}
-                    className="inline-flex items-center gap-1 rounded bg-[#0f2342] px-2.5 py-1 text-xs font-medium text-white hover:bg-[#0b1727] disabled:opacity-50"
+                    className="inline-flex items-center gap-1 rounded-lg bg-[#831825] px-2.5 py-1 text-xs font-medium text-white hover:bg-[#6d1521] disabled:opacity-50"
                   >
                     <Plus className="h-3 w-3" />
                     <span>Add Subject</span>
                   </button>
                 </div>
 
-                <div className="divide-y divide-slate-100 rounded-lg border border-slate-200">
+                <div className="divide-y divide-stone-100 rounded-lg border border-stone-200 overflow-hidden">
                   {selectedExamDetail.examSubjects?.length === 0 ? (
-                    <div className="p-4 text-center text-xs text-slate-400">
+                    <div className="p-4 text-center text-xs text-stone-400">
                       No subjects added to this examination yet.
                     </div>
                   ) : (
@@ -573,25 +573,25 @@ export default function ExaminationsAdminPage() {
                       const hasUnapproved = es.marks?.some((m: any) => m.status === "SUBMITTED");
 
                       return (
-                        <div key={es.id} className="p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="font-semibold text-xs text-slate-900 tabular-nums">
+                        <div key={es.id} className="p-3.5 sm:p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="font-semibold text-xs text-stone-900 tabular-nums">
                                 {es.subject.code}
                               </span>
-                              <span className="font-medium text-xs text-slate-800">
+                              <span className="font-medium text-xs text-stone-800 truncate">
                                 {es.subject.name}
                               </span>
                             </div>
-                            <div className="mt-1 text-[11px] text-slate-500 tabular-nums">
+                            <div className="mt-1 text-[11px] text-stone-500 tabular-nums">
                               Max Internal: {es.maxInternalMarks} • Max External: {es.maxExternalMarks} • Pass Mark: {es.minTotalMarks}
                             </div>
-                            <div className="mt-1 text-[11px] font-medium text-slate-600">
+                            <div className="mt-1 text-[11px] font-medium text-stone-600">
                               Marks Recorded: <span className="tabular-nums">{marksEntered} / {selectedExamDetail.enrollments?.length || 0}</span>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 shrink-0">
                             {hasUnapproved && (
                               <button
                                 onClick={() => handleReviewMarks(es.id, "APPROVE")}
@@ -602,7 +602,7 @@ export default function ExaminationsAdminPage() {
                             )}
                             <Link
                               href={`/faculty/marks?examinationSubjectId=${es.id}`}
-                              className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                              className="inline-flex items-center gap-1 rounded border border-stone-300 bg-white px-2.5 py-1 text-xs font-semibold text-stone-700 hover:bg-stone-50"
                             >
                               <span>Inspect Grid</span>
                               <ExternalLink className="h-3 w-3" />
@@ -740,7 +740,7 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                  className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                 >
                   {submitting ? "Creating..." : "Establish Examination"}
                 </button>
@@ -830,7 +830,7 @@ export default function ExaminationsAdminPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded bg-[#0f2342] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#0b1727]"
+                  className="rounded bg-[#831825] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#6d1521]"
                 >
                   {submitting ? "Adding..." : "Add to Exam"}
                 </button>

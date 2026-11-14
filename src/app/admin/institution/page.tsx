@@ -102,7 +102,7 @@ export default function InstitutionSettingsPage() {
   }
 
   return (
-    <div className="max-w-4xl space-y-6 text-slate-900">
+    <div className="max-w-4xl space-y-5 text-stone-900 max-w-full overflow-x-hidden">
       {/* Title */}
       <div>
         <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950">
@@ -260,7 +260,7 @@ export default function InstitutionSettingsPage() {
                 type="checkbox"
                 checked={form.allowStudentRankView}
                 onChange={(e) => setForm({ ...form, allowStudentRankView: e.target.checked })}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0f2342] focus:ring-slate-800"
+                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#831825] focus:ring-slate-800"
               />
               <div>
                 <span className="text-xs font-medium text-slate-900">
@@ -278,7 +278,7 @@ export default function InstitutionSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg bg-[#0f2342] px-5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#0b1727] disabled:opacity-50"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg bg-[#831825] px-5 py-2 text-xs font-medium text-white shadow-2xs transition hover:bg-[#6d1521] disabled:opacity-50"
           >
             <Save className="h-4 w-4 text-amber-400" />
             <span>{saving ? "Saving Changes..." : "Save Settings"}</span>
